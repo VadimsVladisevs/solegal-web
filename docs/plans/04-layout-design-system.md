@@ -12,8 +12,10 @@ Implement the approved design as Tailwind theme tokens and a small set of reusab
 
 - Theme tokens from `docs/design.md` in `app/styles/app.css`
 - Fonts loaded with Latvian and Cyrillic subsets
-- Layout: header with navigation, mobile menu, footer, page container
-- Language switcher UI
+- Layout: header with anchor navigation, mobile menu, footer, page container
+- Language switcher UI (keeps the current design variant)
+- `variant: "a" | "b" | "c"` support in header and section styling, as described in `docs/design.md`
+- Logo component from `docs/images/logo*.svg`
 - Base components: Button/Link, Section, Card, Heading, Container
 - Responsive (mobile-first) and accessible (keyboard navigation, focus states, skip link, WCAG AA contrast)
 

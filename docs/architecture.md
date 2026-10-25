@@ -48,12 +48,9 @@ app/
   routes.ts                # route config
   routes/
     _index.tsx             # "/" → redirect to /en/
-    $lang._index.tsx       # home
-    $lang.about.tsx
-    $lang.services._index.tsx
-    $lang.services.$slug.tsx
-    $lang.contacts.tsx
-    $lang.partners.tsx     # later (step 08)
+    $lang._index.tsx       # one-page site (hero, about, team, contact), design variant A
+    $lang.b.tsx            # same page, design variant B (until step 11)
+    $lang.c.tsx            # same page, design variant C (until step 11)
   components/              # layout + UI components
   content/
     types.ts               # content types (mirror future Sanity schemas)
@@ -94,9 +91,7 @@ Routes and components never import content files directly. They call a content s
 ```ts
 interface ContentSource {
   getSiteSettings(locale: Locale): Promise<SiteSettings>;
-  getPage(locale: Locale, slug: string): Promise<Page | null>;
-  getServices(locale: Locale): Promise<Service[]>;
-  getService(locale: Locale, slug: string): Promise<Service | null>;
+  getTeam(locale: Locale): Promise<TeamMember[]>;
   getContactInfo(locale: Locale): Promise<ContactInfo>;
   getPartners(locale: Locale): Promise<Partner[]>; // step 08
 }
@@ -105,7 +100,7 @@ interface ContentSource {
 - **Now:** `localSource` reads typed objects from `app/content/{en,lv,ru}/`.
 - **Later:** `sanitySource` implements the same interface with GROQ queries. Because of `prerender`, loaders run **at build time**, so Sanity is queried only during the build and the deployed site stays fully static.
 - The active source is selected in `app/lib/content/index.ts`, later via an env variable.
-- Content types (`SiteSettings`, `Page`, `Service`, `ContactInfo`, `Partner`) are designed to map 1:1 to future Sanity document schemas.
+- Content types (`SiteSettings`, `TeamMember`, `ContactInfo`, `Partner`) are designed to map 1:1 to future Sanity document schemas. Their fields are listed in [design.md](design.md#content-fields-for-the-content-layer-and-the-future-sanity-schemas).
 
 ## Styling and design tokens
 
@@ -113,7 +108,17 @@ interface ContentSource {
 - Components use token-based classes only; no ad-hoc hex values or font stacks.
 - The brand palette, typography and look & feel come from [02-design-discussion](plans/02-design-discussion.md) and are documented in `docs/design.md`.
 
-_Token values: to be filled after step 02._
+Token values (full rationale and contrast checks in [design.md](design.md)):
+
+| Group | Tokens |
+|---|---|
+| Colors | `brand` #2D5703 · `brand-strong` #1F3D02 · `brand-soft` #3A6F05 · `tint` #F2F5EC · `surface` #FFFFFF · `surface-alt` #F7F8F4 · `ink` #111111 · `text` #2A2A2A · `muted` #5B5B5B · `line` #D9DCD3 · `on-brand` #FFFFFF · `on-brand-muted` #B9CFA0 · `photo-bg` #E3E8DA · `photo-fg` #C6D1B6 |
+| Font | Montserrat 400/500/600/700, self-hosted via `@fontsource/montserrat` (latin, latin-ext, cyrillic) |
+| Type scale | 12 · 13 · 15 · 16 (body) · 18 · 20 · 26–36 (h2) · 32–52 (h1) |
+| Layout | container 1200px · section padding 96px / 64px mobile · Tailwind default spacing |
+| Shape | radius 0 · no shadows · 1px `line` borders · 56×2px `brand` rule |
+
+Light theme only. Until the customer picks a design (step 11), section components accept a `variant: "a" | "b" | "c"` prop; see [design.md](design.md#design-variants-pending-customer-choice).
 
 ## Testing strategy
 
@@ -165,7 +170,6 @@ All variables are listed in `.env.example`. Secrets never go into the repo.
 
 ## Open questions
 
-- Contact form: show contact details only, or add a form via a third-party service (Formspree, Web3Forms, a Cloudflare Worker later)?
 - Custom domain for the demo and for production.
 - Sanity localization strategy: document-level (one document per locale) or field-level (localized fields)?
 - Where Sanity Studio lives: a folder in this repo, or a separate repo?

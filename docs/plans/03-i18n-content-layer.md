@@ -15,7 +15,7 @@ Locale-prefixed routing for `en` / `lv` / `ru`, typed UI dictionaries, and a con
 - `<html lang>` from the route locale
 - Typed UI dictionaries + `useT()` helper
 - Language switcher logic (same page, other locale); the UI comes in step 04
-- Content types: `SiteSettings`, `Page`, `Service`, `ContactInfo`, `Partner`
+- Content types: `SiteSettings`, `TeamMember`, `ContactInfo`, `Partner` (fields in `docs/design.md`)
 - `ContentSource` interface + `localSource` implementation
 - Route loaders read content only through the content layer
 - Prerender list generated for every route × locale
@@ -32,7 +32,7 @@ Locale-prefixed routing for `en` / `lv` / `ru`, typed UI dictionaries, and a con
 - [ ] Content types in `app/content/types.ts`
 - [ ] `ContentSource` + `localSource` + selector
 - [ ] Content completeness test (every locale has every item)
-- [ ] Generate the prerender path list from locales × routes (× service slugs)
+- [ ] Generate the prerender path list from locales × routes (incl. design variants `b`, `c` until step 11)
 
 ## Done when
 
@@ -42,7 +42,7 @@ Locale-prefixed routing for `en` / `lv` / `ru`, typed UI dictionaries, and a con
 
 ## Open questions for discussion
 
-- URL slugs: translated per locale (`/lv/pakalpojumi`) or shared English slugs (`/lv/services`)?
+- URL slugs: mostly moot now (one-page site, see step 02); still relevant for future sections such as Partners
 - Language switcher behavior when a page doesn't exist in a locale
 - Should `/` detect the browser language, or always go to `/en/`?
 

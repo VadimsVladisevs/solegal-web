@@ -4,11 +4,11 @@ Guidance for AI coding agents (Claude Code, Codex, etc.) working in this reposit
 
 ## Project
 
-**solegal-web** is a static, multilingual website for a law firm. It presents:
+**solegal-web** is a static, multilingual, one-page website for a law firm. It presents:
 
 - company information (About)
-- services provided
-- contacts
+- the team
+- contacts (email, phone)
 - a **Partners** section (planned for later)
 
 This repository is currently a **demo**. It is deployed to GitHub Pages and keeps its content in the repo. The production project will run on **Cloudflare Pages** with **Sanity CMS**. Those integrations are out of scope for now, but the code must stay ready for them (see [architecture](docs/architecture.md)).

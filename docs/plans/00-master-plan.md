@@ -2,7 +2,7 @@
 
 ## Goal
 
-Build a static, multilingual (`en`, `lv`, `ru`) law-firm website that presents the company, its services and its contacts, with a Partners section later. Deploy it as a demo on GitHub Pages, and keep it ready to move to Cloudflare Pages and Sanity CMS.
+Build a static, multilingual (`en`, `lv`, `ru`) one-page law-firm website that presents the company, its team and its contacts, with a Partners section later. Deploy it as a demo on GitHub Pages, and keep it ready to move to Cloudflare Pages and Sanity CMS.
 
 ## Scope
 
@@ -21,12 +21,13 @@ Legend: 📝 Draft (needs discussion) · 🔵 Ready · 🟡 In progress · ✅ D
 | # | Step | Status | Depends on | Milestone |
 |---|---|---|---|---|
 | 01 | [Project setup](01-project-setup.md) | 📝 Draft | — | M1 |
-| 02 | [Design discussion](02-design-discussion.md) | 📝 Draft | — (parallel with 01) | M1 |
+| 02 | [Design discussion](02-design-discussion.md) | ✅ Done | — (parallel with 01) | M1 |
 | 03 | [i18n & content layer](03-i18n-content-layer.md) | 📝 Draft | 01 | M1 |
 | 04 | [Layout & design system](04-layout-design-system.md) | 📝 Draft | 02, 03 | M2 |
 | 05 | [Core pages](05-core-pages.md) | 📝 Draft | 04 | M2 |
 | 06 | [SEO & metadata](06-seo-metadata.md) | 📝 Draft | 05 | M2 |
 | 07 | [CI/CD → GitHub Pages](07-ci-cd-github-pages.md) | 📝 Draft | 01 (pipeline), 05 (live site) | M2 |
+| 11 | [Final design variant](11-final-design-variant.md) | 📝 Draft · blocked on customer | 05 + customer choice | M2 |
 | 08 | [Partners section](08-partners-section.md) | 📝 Draft · backlog | 05 | M3 |
 | 09 | [Cloudflare Pages](09-cloudflare-pages.md) | 📝 Draft · backlog | 07 | M4 |
 | 10 | [Sanity CMS](10-sanity-cms.md) | 📝 Draft · backlog | 03, 09 | M4 |
