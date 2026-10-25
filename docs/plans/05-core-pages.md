@@ -49,3 +49,7 @@ From step 02 (2026-10-25):
 - Contact shows email and phone only (`mailto:` / `tel:` links); no form, map, address or hours.
 - Placeholder (lorem ipsum / dummy) content for the demo.
 - Three design variants are built for customer review; see [11](11-final-design-variant.md) for removal.
+
+From step 04 (2026-10-25):
+
+- The anchor offset under the sticky header is handled in step 04 (`scroll-padding-top`).
