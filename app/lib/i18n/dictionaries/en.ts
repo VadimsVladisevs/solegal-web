@@ -1,11 +1,13 @@
 // Source of truth for UI strings: `Dictionary` is derived from this file.
 export const en = {
+  skipLink: "Skip to content",
   nav: {
     label: "Main navigation",
     about: "About",
     team: "Team",
     contact: "Contact",
     menu: "Menu",
+    close: "Close",
   },
   team: {
     label: "Team",

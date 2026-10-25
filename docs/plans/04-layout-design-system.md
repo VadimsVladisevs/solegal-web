@@ -27,20 +27,20 @@ Implement the approved design as Tailwind theme tokens and a small set of reusab
 
 ## Tasks
 
-- [ ] Add theme tokens (reset Tailwind's default palette)
-- [ ] Set up fonts
-- [ ] Add `lucide-react`
-- [ ] Logo component
-- [ ] Base components
-- [ ] Header, navigation and mobile menu
-- [ ] Footer
-- [ ] Language switcher
-- [ ] Variant from route `handle`, passed to Header
-- [ ] Sticky header offset + reduced-motion smooth scroll
-- [ ] Temporary layout preview on the home route
-- [ ] Component tests (nav, switcher, mobile menu)
-- [ ] Playwright mobile project (`Pixel 7`); smoke and axe checks run on desktop and mobile
-- [ ] Axe checks in Playwright (`@axe-core/playwright`) on the built pages; keyboard check
+- [x] Add theme tokens (reset Tailwind's default palette)
+- [x] Set up fonts
+- [x] Add `lucide-react`
+- [x] Logo component
+- [x] Base components
+- [x] Header, navigation and mobile menu
+- [x] Footer
+- [x] Language switcher
+- [x] Variant from route `handle`, passed to Header
+- [x] Sticky header offset + reduced-motion smooth scroll
+- [x] Temporary layout preview on the home route
+- [x] Component tests (nav, switcher, mobile menu)
+- [x] Playwright mobile project (`Pixel 7`); smoke and axe checks run on desktop and mobile
+- [x] Axe checks in Playwright (`@axe-core/playwright`) on the built pages; keyboard check
 
 ## Done when
 
@@ -74,3 +74,12 @@ Discussed 2026-10-25:
 Added 2026-10-25:
 
 - **Mobile compatibility** is a project-wide requirement. This step follows [Mobile & responsive](../design.md#mobile--responsive): 320px minimum, 44px touch targets, safe-area insets, and a Playwright mobile project (`Pixel 7`, Chromium emulation) alongside desktop.
+
+Found while building (2026-10-25):
+
+- **Variant routes:** `home-b.tsx` and `home-c.tsx` re-export the home page and declare their own `handle`, because a shared route module can only have one `handle`.
+- **Breakpoints:** `sm` > 560px, `md` > 720px, `lg` > 900px (mobile-first `min-width`), matching the design's collapse points. Tailwind's default breakpoints, font sizes and fonts are reset like the palette.
+- **Font family name:** the variable package registers `"Montserrat Variable"`, which heads the font stack.
+- **Focus ring on green:** on `brand` backgrounds (variant B header, white button) the outline is `on-brand`, because `brand-soft` has too little contrast there.
+- **Page title:** the `:lang` layout sets `<title>` to the firm name so axe's `document-title` check passes. Step 06 replaces it with per-page titles.
+- **Section tones:** `Section` takes a `tone` (`surface`, `surface-alt`, `tint`, `brand`, `brand-strong`); the home preview maps each variant to tones. Typography components take `onBrand` for green backgrounds.

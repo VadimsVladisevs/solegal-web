@@ -114,7 +114,7 @@ Token values (full rationale and contrast checks in [design.md](design.md)):
 | Group | Tokens |
 |---|---|
 | Colors | `brand` #2D5703 · `brand-strong` #1F3D02 · `brand-soft` #3A6F05 · `tint` #F2F5EC · `surface` #FFFFFF · `surface-alt` #F7F8F4 · `ink` #111111 · `text` #2A2A2A · `muted` #5B5B5B · `line` #D9DCD3 · `on-brand` #FFFFFF · `on-brand-muted` #B9CFA0 · `photo-bg` #E3E8DA · `photo-fg` #C6D1B6 |
-| Font | Montserrat 400/500/600/700, self-hosted via `@fontsource/montserrat` (latin, latin-ext, cyrillic) |
+| Font | Montserrat 400/500/600/700, self-hosted via `@fontsource-variable/montserrat` (latin, latin-ext, cyrillic) |
 | Type scale | 12 · 13 · 15 · 16 (body) · 18 · 20 · 26–36 (h2) · 32–52 (h1) |
 | Layout | container 1200px · section padding 96px / 64px mobile · Tailwind default spacing |
 | Shape | radius 0 · no shadows · 1px `line` borders · 56×2px `brand` rule |

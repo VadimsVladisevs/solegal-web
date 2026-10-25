@@ -1,12 +1,14 @@
 import type { Dictionary } from "./en";
 
 export const lv: Dictionary = {
+  skipLink: "Pāriet uz saturu",
   nav: {
     label: "Galvenā navigācija",
     about: "Par mums",
     team: "Komanda",
     contact: "Kontakti",
     menu: "Izvēlne",
+    close: "Aizvērt",
   },
   team: {
     label: "Komanda",

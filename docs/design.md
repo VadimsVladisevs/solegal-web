@@ -85,8 +85,8 @@ Do not use `brand-soft` or `muted` text on `brand` backgrounds.
 
 ## Typography
 
-- **Family:** Montserrat (OFL), self-hosted via `@fontsource/montserrat` with the `latin`, `latin-ext` (Latvian) and `cyrillic` (Russian) subsets. No requests to Google.
-- **Fallback stack:** `"Montserrat", "Segoe UI", "Helvetica Neue", Arial, sans-serif`.
+- **Family:** Montserrat (OFL), self-hosted via `@fontsource-variable/montserrat`. `unicode-range` loads only the subsets a page needs: `latin`, `latin-ext` (Latvian), `cyrillic` (Russian). No requests to Google.
+- **Fallback stack:** `"Montserrat Variable", "Segoe UI", "Helvetica Neue", Arial, sans-serif`.
 - **Weights:** 400 (body), 500 (nav, contact values), 600 (headings, labels, buttons). 700 only for the decorative "SO" watermark in variant B.
 
 | Role | Size | Weight | Line height | Notes |

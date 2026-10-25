@@ -11,7 +11,11 @@ export default defineConfig({
   use: {
     baseURL: `http://localhost:${port}${basePath}`,
   },
-  projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
+  projects: [
+    { name: "desktop", use: { ...devices["Desktop Chrome"] } },
+    // Chromium emulation of a phone; real-device checks happen in step 05.
+    { name: "mobile", use: { ...devices["Pixel 7"] } },
+  ],
   // Smoke tests run against the built static site, never the dev server.
   webServer: {
     command: `npm run build && npm run preview -- --port ${port} --strictPort`,

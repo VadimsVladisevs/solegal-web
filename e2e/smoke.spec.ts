@@ -30,7 +30,7 @@ for (const locale of locales) {
       // The served HTML must be the prerendered page, not the empty SPA fallback.
       const html = (await response?.text()) ?? "";
       expect(html).toContain(`<html lang="${locale}">`);
-      expect(html).toMatch(/<h1>[^<]+<\/h1>/);
+      expect(html).toMatch(/<h1[^>]*>[^<]+<\/h1>/);
       await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
       await page.waitForLoadState("networkidle");
 

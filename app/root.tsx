@@ -8,6 +8,7 @@ import {
 } from "react-router";
 import { defaultLocale, isLocale } from "~/lib/i18n/config";
 
+import "@fontsource-variable/montserrat";
 import "./styles/app.css";
 
 export function Layout({ children }: { children: React.ReactNode }) {
