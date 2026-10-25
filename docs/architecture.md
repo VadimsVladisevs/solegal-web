@@ -2,7 +2,7 @@
 
 ## Overview
 
-solegal-web is a static, multilingual law-firm website. Every route in every locale is **prerendered to static HTML at build time**. No server or database runs at request time.
+solegal-web is a static, multilingual law-firm website. Every route in every locale is **prerendered to static HTML at build time**. No server or database runs at request time. The site is mobile-first and responsive (see [design.md](design.md#mobile--responsive)).
 
 There are two deployment targets:
 
@@ -127,7 +127,7 @@ Light theme only. Until the customer picks a design (step 11), section component
 |---|---|---|
 | Unit | Vitest | i18n helpers, dictionary completeness, content source, utilities |
 | Component | Vitest + RTL | Layout, navigation, language switcher, page sections |
-| E2E smoke | Playwright | Built site: every route × locale renders, nav works, language switch works, no console errors |
+| E2E smoke | Playwright (desktop + mobile `Pixel 7` projects) | Built site: every route × locale renders, nav works, language switch works, no console errors, no horizontal scroll |
 | Static checks | `tsc --noEmit`, ESLint, Prettier | Run in CI on every push/PR |
 
 ## Build and deploy

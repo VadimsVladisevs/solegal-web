@@ -10,6 +10,7 @@ Visual identity and look & feel for solegal-web. Decided in [02-design-discussio
 - **Echo the logo.** It uses a geometric sans-serif, a thin horizontal rule, and widely tracked capitals ("L E G A L"). The site repeats these: Montserrat, thin rules as dividers, and small uppercase labels with wide tracking.
 - **Sharp, flat.** Corner radius is 0–2px, there are no shadows, and separation comes from thin `line` borders and background changes.
 - **Light theme only.**
+- **Mobile-first.** Designed for phones first, then scaled up to tablet and desktop; see [Mobile & responsive](#mobile--responsive).
 
 ## Site structure
 
@@ -112,6 +113,19 @@ Headings use `text-wrap: balance`.
 - **Radius:** 0 (2px allowed for inputs if they appear later). **Shadows:** none.
 - **Rule:** a short divider, 56 × 2px in `brand`, under hero and section headings.
 - **Focus:** 2px `brand-soft` outline, 3px offset, on every interactive element.
+
+## Mobile & responsive
+
+The site must work on phones, tablets and desktops.
+
+- **Mobile-first.** Base styles target small screens. Wider layouts are added at the breakpoints above.
+- **Minimum width:** 320px. No horizontal scrolling at any width.
+- **Touch targets:** at least 44 × 44px for nav links, the menu button, the language switcher, buttons and `mailto:`/`tel:` links. Padding can supply the size when the visible text is smaller.
+- **Zoom:** never blocked. The viewport meta stays `width=device-width, initial-scale=1`.
+- **Safe areas:** the sticky header and the mobile menu respect `env(safe-area-inset-*)` on notched phones.
+- **Contact:** email and phone are tap-to-act links (`mailto:`, `tel:`).
+- **Reference viewports:** 360 × 800 (phone), 768 × 1024 (tablet), 1280 × 800 (desktop).
+- **Testing:** Playwright runs on a desktop project and a mobile project (`devices["Pixel 7"]`, Chromium emulation). A manual check on a real phone (iOS Safari and Android Chrome) happens before step 05 is done.
 
 ## Logo
 

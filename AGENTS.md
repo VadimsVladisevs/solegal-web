@@ -11,6 +11,8 @@ Guidance for AI coding agents (Claude Code, Codex, etc.) working in this reposit
 - contacts (email, phone)
 - a **Partners** section (planned for later)
 
+The site is **mobile-first and responsive**: it must work on phones, tablets and desktops.
+
 This repository is currently a **demo**. It is deployed to GitHub Pages and keeps its content in the repo. The production project will run on **Cloudflare Pages** with **Sanity CMS**. Those integrations are out of scope for now, but the code must stay ready for them (see [architecture](docs/architecture.md)).
 
 ## Stack (summary)
@@ -76,6 +78,7 @@ Status legend: 📝 Draft (needs discussion) · 🔵 Ready · 🟡 In progress �
 - **No hardcoded user-visible strings.** All text goes through i18n dictionaries or localized content.
 - **Every page exists in all three locales** (`en`, `lv`, `ru`).
 - **Pages get content only through the content access layer** (`app/lib/content/`). Never import content files directly from routes or components, so Sanity can replace the local source later.
+- **Mobile-first and responsive.** Every page works from 320px wide with no horizontal scroll, and touch targets are at least 44 × 44px. Check mobile and desktop viewports (see [design](docs/design.md#mobile--responsive)).
 - **Colors, fonts and spacing come only from design tokens** (Tailwind theme), never as ad-hoc values.
 - **The base path is never hardcoded.** It comes from `BASE_PATH`, because the site is served under `/solegal-web/` on GitHub Pages and at `/` on Cloudflare.
 - TypeScript strict mode; avoid `any`.

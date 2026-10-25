@@ -28,12 +28,13 @@ See [design.md](../design.md) for sections, content fields and variants.
 - [ ] Contact section
 - [ ] Variant routes `b` and `c` + design switcher
 - [ ] 404 page
-- [ ] Playwright: every page × locale × variant renders
+- [ ] Playwright: every page × locale × variant renders, in the desktop and mobile projects
 
 ## Done when
 
 - Every page renders in `en`, `lv` and `ru` in the built site
 - All text comes from dictionaries or the content layer
+- Every section works at the mobile reference viewport (Playwright mobile project) and has been checked once on a real phone (iOS Safari and Android Chrome)
 - Lint, typecheck, unit and e2e tests pass
 
 ## Open questions for discussion

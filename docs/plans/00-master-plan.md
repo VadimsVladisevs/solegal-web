@@ -2,13 +2,15 @@
 
 ## Goal
 
-Build a static, multilingual (`en`, `lv`, `ru`) one-page law-firm website that presents the company, its team and its contacts, with a Partners section later. Deploy it as a demo on GitHub Pages, and keep it ready to move to Cloudflare Pages and Sanity CMS.
+Build a static, multilingual (`en`, `lv`, `ru`) one-page law-firm website, responsive and mobile-first, that presents the company, its team and its contacts, with a Partners section later. Deploy it as a demo on GitHub Pages, and keep it ready to move to Cloudflare Pages and Sanity CMS.
 
 ## Scope
 
 **In scope (now):** project setup, design system, i18n, content layer with local content, core pages, SEO, CI/CD to GitHub Pages.
 
 **Prepared for, but not integrated now:** Cloudflare Pages hosting, Sanity CMS.
+
+**Cross-cutting requirement:** mobile compatibility. Every step that touches UI must work on phones, tablets and desktops; see [design.md](../design.md#mobile--responsive).
 
 **Out of scope:** database, authentication, user accounts, server-side logic.
 

@@ -14,7 +14,7 @@ Every page in every locale has correct metadata for search engines and link prev
 - `hreflang` alternates (including `x-default`) and canonical URLs
 - Open Graph and Twitter card tags, default OG image
 - `sitemap.xml` (all routes × locales) and `robots.txt`, generated at build time and respecting `BASE_PATH`
-- Favicon set and web manifest
+- Favicon set, `apple-touch-icon`, `theme-color` meta and web manifest
 - Structured data (JSON-LD `LegalService` / `Organization`)
 
 **Out of scope:** analytics (to be discussed).

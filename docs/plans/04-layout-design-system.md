@@ -20,7 +20,8 @@ Implement the approved design as Tailwind theme tokens and a small set of reusab
 - Icons from `lucide-react`
 - Anchor offset under the sticky header (`scroll-padding-top`)
 - Temporary layout preview on the home route (placeholder sections until step 05)
-- Responsive (mobile-first) and accessible (keyboard navigation, focus states, skip link, WCAG AA contrast)
+- Responsive (mobile-first) and accessible (keyboard navigation, focus states, skip link, WCAG AA contrast), following [Mobile & responsive](../design.md#mobile--responsive): 320px minimum width, touch targets ≥ 44px, safe-area insets for the sticky header and mobile menu
+- Playwright mobile project (`devices["Pixel 7"]`) next to the desktop one
 
 **Out of scope:** page content and `TeamMemberCard` (step 05), the floating design switcher (step 05).
 
@@ -38,11 +39,13 @@ Implement the approved design as Tailwind theme tokens and a small set of reusab
 - [ ] Sticky header offset + reduced-motion smooth scroll
 - [ ] Temporary layout preview on the home route
 - [ ] Component tests (nav, switcher, mobile menu)
+- [ ] Playwright mobile project (`Pixel 7`); smoke and axe checks run on desktop and mobile
 - [ ] Axe checks in Playwright (`@axe-core/playwright`) on the built pages; keyboard check
 
 ## Done when
 
 - The layout matches the approved design on mobile, tablet and desktop
+- No horizontal scroll at 320px; touch targets are at least 44 × 44px
 - No hardcoded colors or fonts outside the theme
 - Component tests pass; axe reports no serious or critical issues
 
@@ -67,3 +70,7 @@ Discussed 2026-10-25:
 - **Anchors:** `scroll-padding-top` equals the header height. Smooth scrolling applies only under `prefers-reduced-motion: no-preference`.
 - **Accessibility testing:** `@axe-core/playwright` runs on the built pages, because jsdom can't check contrast. Component tests for the nav, switcher and mobile menu use Vitest + RTL.
 - **Preview:** until step 05, the home route renders the header and footer around placeholder sections.
+
+Added 2026-10-25:
+
+- **Mobile compatibility** is a project-wide requirement. This step follows [Mobile & responsive](../design.md#mobile--responsive): 320px minimum, 44px touch targets, safe-area insets, and a Playwright mobile project (`Pixel 7`, Chromium emulation) alongside desktop.

@@ -13,6 +13,7 @@ Add a Partners section that presents the company's partners in all 3 locales.
 - A `Partner` content type through the content layer (name, logo, description, link, category?)
 - Partners page (list or grid of cards); optionally a partners strip on the Home page
 - Navigation entry, SEO metadata, sitemap entries
+- Responsive per [Mobile & responsive](../design.md#mobile--responsive)
 
 ## Tasks
 
