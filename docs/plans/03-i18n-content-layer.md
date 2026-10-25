@@ -1,6 +1,6 @@
 # 03 — i18n & content layer
 
-**Status:** 🔵 Ready
+**Status:** ✅ Done
 **Depends on:** 01
 **Milestone:** M1
 
@@ -24,16 +24,16 @@ Locale-prefixed routing for `en` / `lv` / `ru`, typed UI dictionaries, and a con
 
 ## Tasks
 
-- [ ] Locale config and helpers
-- [ ] Route structure with the `:lang` segment
-- [ ] Root redirect page (`navigator.languages` → `/lv/`, `/ru/` or `/en/`; meta-refresh to `/en/` without JS; `noindex`)
-- [ ] Dictionaries for en/lv/ru, `getDictionary` in the `:lang` layout loader, `useT()` reading it from loader data
-- [ ] Dictionary completeness test
-- [ ] Content types in `app/content/types.ts`
-- [ ] `ContentSource` + `localSource` + selector
-- [ ] Content completeness test (every locale has every item)
-- [ ] ESLint `no-restricted-imports`: no `app/content/**` imports from `app/routes/**` or `app/components/**`
-- [ ] Generate the prerender path list from locales × routes (incl. design variants `b`, `c` until step 11)
+- [x] Locale config and helpers
+- [x] Route structure with the `:lang` segment
+- [x] Root redirect page (`navigator.languages` → `/lv/`, `/ru/` or `/en/`; meta-refresh to `/en/` without JS; `noindex`)
+- [x] Dictionaries for en/lv/ru, `getDictionary` in the `:lang` layout loader, `useT()` reading it from loader data
+- [x] Dictionary completeness test
+- [x] Content types in `app/content/types.ts`
+- [x] `ContentSource` + `localSource` + selector
+- [x] Content completeness test (every locale has every item)
+- [x] ESLint `no-restricted-imports`: no `app/content/**` imports from `app/routes/**` or `app/components/**`
+- [x] Generate the prerender path list from locales × routes (incl. design variants `b`, `c` until step 11)
 
 ## Done when
 
@@ -52,6 +52,9 @@ Locale-prefixed routing for `en` / `lv` / `ru`, typed UI dictionaries, and a con
 - **Routing:** explicit config in `app/routes.ts`: an `index` route for `/`, and `route(":lang", …)` as a layout wrapping the page routes (variants `b`, `c` as children until step 11).
 - **Unknown locale:** the `:lang` loader throws a 404 response; unknown locales are not prerendered, so GitHub Pages serves `404.html`.
 - **Content source:** `localSource` methods return `Promise`s, matching the future `sanitySource`.
+- **Trailing slashes (found while building):** pages are prerendered as `<path>/index.html`, and static hosts redirect `/en/b` to `/en/b/`. Internal links (nav, language and design switchers in step 04) use the trailing-slash form.
+- **`useT()` API (found while building):** returns the typed dictionary object (`t.nav.about`), provided via `I18nContext` by the `:lang` layout; `useLocale()` returns the route locale.
+- **Unknown locales on GitHub Pages:** not prerendered, so the host serves its 404 page; a custom `404.html` is part of step 07.
 
 ### File layout
 

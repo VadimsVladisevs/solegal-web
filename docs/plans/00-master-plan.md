@@ -22,7 +22,7 @@ Legend: 📝 Draft (needs discussion) · 🔵 Ready · 🟡 In progress · ✅ D
 |---|---|---|---|---|
 | 01 | [Project setup](01-project-setup.md) | ✅ Done | — | M1 |
 | 02 | [Design discussion](02-design-discussion.md) | ✅ Done | — (parallel with 01) | M1 |
-| 03 | [i18n & content layer](03-i18n-content-layer.md) | 🔵 Ready | 01 | M1 |
+| 03 | [i18n & content layer](03-i18n-content-layer.md) | ✅ Done | 01 | M1 |
 | 04 | [Layout & design system](04-layout-design-system.md) | 📝 Draft | 02, 03 | M2 |
 | 05 | [Core pages](05-core-pages.md) | 📝 Draft | 04 | M2 |
 | 06 | [SEO & metadata](06-seo-metadata.md) | 📝 Draft | 05 | M2 |

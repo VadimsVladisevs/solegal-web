@@ -1,28 +1,66 @@
-import { expect, test } from "@playwright/test";
+import { type Page, expect, test } from "@playwright/test";
 
-test("home page loads with all assets and no console errors", async ({
-  page,
-}) => {
-  const consoleErrors: string[] = [];
+const locales = ["en", "lv", "ru"];
+// Canonical URLs end with "/": static hosts redirect `/en/b` to `/en/b/`.
+const pages = ["", "b/", "c/"];
+
+function trackErrors(page: Page) {
+  const errors: string[] = [];
   page.on("console", (msg) => {
-    if (msg.type() === "error") consoleErrors.push(msg.text());
+    if (msg.type() === "error") errors.push(msg.text());
   });
-
-  const failedAssets: string[] = [];
   page.on("response", (response) => {
     const type = response.request().resourceType();
     if ((type === "script" || type === "stylesheet") && !response.ok()) {
-      failedAssets.push(`${response.status()} ${response.url()}`);
+      errors.push(`${response.status()} ${response.url()}`);
     }
   });
+  return errors;
+}
 
-  const response = await page.goto("./");
-  expect(response?.ok()).toBe(true);
-  // The served HTML must be the prerendered page, not the empty SPA fallback.
-  expect(await response?.text()).toContain("<main>");
-  await expect(page.getByRole("main")).toBeAttached();
-  await page.waitForLoadState("networkidle");
+for (const locale of locales) {
+  for (const path of pages) {
+    test(`/${locale}/${path} is prerendered and loads cleanly`, async ({
+      page,
+    }) => {
+      const errors = trackErrors(page);
 
-  expect(failedAssets).toEqual([]);
-  expect(consoleErrors).toEqual([]);
+      const response = await page.goto(`./${locale}/${path}`);
+      expect(response?.ok()).toBe(true);
+      // The served HTML must be the prerendered page, not the empty SPA fallback.
+      const html = (await response?.text()) ?? "";
+      expect(html).toContain(`<html lang="${locale}">`);
+      expect(html).toMatch(/<h1>[^<]+<\/h1>/);
+      await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+      await page.waitForLoadState("networkidle");
+
+      expect(errors).toEqual([]);
+    });
+  }
+}
+
+test.describe("root redirect", () => {
+  for (const [browserLocale, expected] of [
+    ["lv-LV", "lv"],
+    ["ru-RU", "ru"],
+    ["de-DE", "en"],
+  ]) {
+    test.describe(`browser language ${browserLocale}`, () => {
+      test.use({ locale: browserLocale });
+
+      test(`goes to /${expected}/`, async ({ page, baseURL }) => {
+        await page.goto("./");
+        await expect(page).toHaveURL(`${baseURL}${expected}/`);
+      });
+    });
+  }
+
+  test.describe("without JavaScript", () => {
+    test.use({ javaScriptEnabled: false, locale: "lv-LV" });
+
+    test("goes to /en/", async ({ page, baseURL }) => {
+      await page.goto("./");
+      await expect(page).toHaveURL(`${baseURL}en/`);
+    });
+  });
 });
