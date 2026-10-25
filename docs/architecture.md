@@ -47,7 +47,7 @@ app/
   root.tsx                 # html shell, <html lang>, global styles
   routes.ts                # route config
   routes/
-    _index.tsx             # "/" → redirect to /en/
+    _index.tsx             # "/" → browser-language redirect page
     $lang._index.tsx       # one-page site (hero, about, team, contact), design variant A
     $lang.b.tsx            # same page, design variant B (until step 11)
     $lang.c.tsx            # same page, design variant C (until step 11)
@@ -70,18 +70,17 @@ public/
 e2e/                       # Playwright specs
 ```
 
-Route file names are illustrative. The final routing convention is decided in step 03.
+Route file names are illustrative. Routes are configured explicitly in `app/routes.ts`: an `index` route for `/` and a `:lang` layout route wrapping the pages (see step 03).
 
 ## Routing and i18n
 
 - Locales: `en` (default), `lv`, `ru`.
 - Every page lives under a `:lang` segment: `/en/about`, `/lv/about`, `/ru/about`.
-- `/` redirects to `/en/`.
-  - On GitHub Pages this is done with a prerendered meta-refresh/JS redirect page.
-  - On Cloudflare it is a real `302` in `_redirects`.
+- `/` is a prerendered redirect page (same on GitHub Pages and Cloudflare, `noindex`): JS reads `navigator.languages` and goes to `/lv/`, `/ru/` or `/en/`; a meta-refresh to `/en/` covers no-JS visitors and crawlers.
+- Slugs are shared English in every locale (`/lv/partners`); section anchors are locale-independent (`#about`, `#team`, `#contact`).
 - An unknown `:lang` returns a 404.
 - `<html lang>` is set from the route locale.
-- UI strings (navigation, buttons, labels) live in typed dictionaries. A test checks that every locale has every key.
+- UI strings (navigation, buttons, labels) live in typed dictionaries, loaded through the content layer (`getDictionary`) by the `:lang` layout loader; `useT()` reads them from loader data. A test checks that every locale has every key.
 - The language switcher links to the same page in the other locale.
 
 ## Content access layer
@@ -90,6 +89,7 @@ Routes and components never import content files directly. They call a content s
 
 ```ts
 interface ContentSource {
+  getDictionary(locale: Locale): Promise<Dictionary>; // UI strings
   getSiteSettings(locale: Locale): Promise<SiteSettings>;
   getTeam(locale: Locale): Promise<TeamMember[]>;
   getContactInfo(locale: Locale): Promise<ContactInfo>;
@@ -100,6 +100,7 @@ interface ContentSource {
 - **Now:** `localSource` reads typed objects from `app/content/{en,lv,ru}/`.
 - **Later:** `sanitySource` implements the same interface with GROQ queries. Because of `prerender`, loaders run **at build time**, so Sanity is queried only during the build and the deployed site stays fully static.
 - The active source is selected in `app/lib/content/index.ts`, later via an env variable.
+- UI dictionaries go through the same layer, so editors can manage UI strings in Sanity later (step 10).
 - Content types (`SiteSettings`, `TeamMember`, `ContactInfo`, `Partner`) are designed to map 1:1 to future Sanity document schemas. Their fields are listed in [design.md](design.md#content-fields-for-the-content-layer-and-the-future-sanity-schemas).
 
 ## Styling and design tokens
@@ -164,7 +165,7 @@ All variables are listed in `.env.example`. Secrets never go into the repo.
 ## GitHub Pages constraints
 
 - The site is served under a sub-path (`/solegal-web/`), so all URLs and assets must respect `BASE_PATH`.
-- There are no server redirects or custom headers. The `/` → `/en/` redirect is a prerendered redirect page.
+- There are no server redirects or custom headers. The `/` redirect is a prerendered page (browser language, fallback `/en/`).
 - Unknown URLs get `404.html`, which the build generates.
 - `_redirects` and `_headers` in `public/` are ignored here and only take effect on Cloudflare.
 

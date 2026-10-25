@@ -18,6 +18,7 @@ Content editors manage all site content in Sanity. Publishing content triggers a
 
 - Sanity project + dataset; Sanity Studio setup
 - Schemas mirroring `SiteSettings`, `TeamMember`, `ContactInfo`, `Partner`, with localization for `en` / `lv` / `ru`
+- "UI strings" singleton (localized, one field per `Dictionary` key) served via `getDictionary`, with a build-time check for empty/missing keys (fail the build or fall back to `en`, to be decided)
 - `sanitySource` implementing `ContentSource` (GROQ, build-time fetch)
 - Source selection via `CONTENT_SOURCE` env
 - Migrate the demo content into Sanity
