@@ -20,7 +20,7 @@ Production integration is **out of current scope**. The architecture is shaped s
 | Area | Choice | Rationale |
 |---|---|---|
 | UI | React 19 + TypeScript (strict) | Team familiarity, type safety |
-| Framework / routing | React Router v7, framework mode | Uses Vite. With `ssr: false` + `prerender`, it outputs real HTML per route |
+| Framework / routing | React Router v8, framework mode | Uses Vite. With `ssr: false` + `prerender`, it outputs real HTML per route |
 | Build tool | Vite | Fast dev server; Vitest shares its config |
 | Styling | Tailwind CSS v4 (`@tailwindcss/vite`) | Consistent layouts; design tokens live in the theme |
 | i18n | Custom, lightweight: locale route segment + typed dictionaries | Only 3 locales and static content; no runtime i18n library needed |
@@ -38,7 +38,7 @@ A plain client-side SPA serves an empty HTML shell, and JavaScript builds each p
 - Crawlers and social previews (LinkedIn, Facebook, messengers) often don't run JS, so they see no title, description or content.
 - Per-locale `<title>`, meta description, `hreflang` and Open Graph tags are much easier to get right when they are in the HTML.
 
-React Router v7 prerendering keeps the React + TypeScript + Vite stack and emits static HTML for every route, so the site can be hosted on any static host.
+React Router v8 prerendering keeps the React + TypeScript + Vite stack and emits static HTML for every route, so the site can be hosted on any static host.
 
 ## Directory structure (planned)
 

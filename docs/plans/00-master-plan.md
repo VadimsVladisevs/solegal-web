@@ -20,7 +20,7 @@ Legend: 📝 Draft (needs discussion) · 🔵 Ready · 🟡 In progress · ✅ D
 
 | # | Step | Status | Depends on | Milestone |
 |---|---|---|---|---|
-| 01 | [Project setup](01-project-setup.md) | 📝 Draft | — | M1 |
+| 01 | [Project setup](01-project-setup.md) | ✅ Done | — | M1 |
 | 02 | [Design discussion](02-design-discussion.md) | ✅ Done | — (parallel with 01) | M1 |
 | 03 | [i18n & content layer](03-i18n-content-layer.md) | 📝 Draft | 01 | M1 |
 | 04 | [Layout & design system](04-layout-design-system.md) | 📝 Draft | 02, 03 | M2 |

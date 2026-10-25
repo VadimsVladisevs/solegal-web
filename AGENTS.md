@@ -16,7 +16,7 @@ This repository is currently a **demo**. It is deployed to GitHub Pages and keep
 ## Stack (summary)
 
 - React 19 + TypeScript (strict)
-- React Router v7 (framework mode) on Vite, prerendered to static HTML (`ssr: false` + `prerender`)
+- React Router v8 (framework mode) on Vite, prerendered to static HTML (`ssr: false` + `prerender`)
 - Tailwind CSS v4
 - i18n: `en` (default), `lv`, `ru`; all routes are locale-prefixed (`/en/...`)
 - Vitest + React Testing Library, Playwright
@@ -43,16 +43,18 @@ docs/
 
 ## Commands
 
-> Available after sub-plan [01-project-setup](docs/plans/01-project-setup.md) is done.
-
 | Command | Purpose |
 |---|---|
 | `npm run dev` | Start the dev server |
-| `npm run build` | Build the prerendered static site |
+| `npm run build` | Build the prerendered static site into `build/client` |
+| `npm run preview` | Serve the built site locally under `BASE_PATH` |
 | `npm run test` | Unit/component tests (Vitest) |
-| `npm run test:e2e` | E2E smoke tests (Playwright) |
+| `npm run test:e2e` | E2E smoke tests (Playwright, Chromium); builds and serves the site first |
 | `npm run lint` | ESLint + Prettier check |
-| `npm run typecheck` | `tsc --noEmit` |
+| `npm run typecheck` | Route typegen + `tsc` |
+| `npm run format` | Format code with Prettier (Markdown is hand-formatted and ignored) |
+
+Node 24 (`.nvmrc`), npm. A husky pre-commit hook runs lint-staged (ESLint `--fix` + Prettier on staged files). Set `BASE_PATH` from PowerShell or CMD; Git Bash rewrites `/` into a Windows path.
 
 ## Planning workflow
 
