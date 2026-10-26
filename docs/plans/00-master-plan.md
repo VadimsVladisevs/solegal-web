@@ -28,7 +28,7 @@ Legend: 📝 Draft (needs discussion) · 🔵 Ready · 🟡 In progress · ✅ D
 | 04 | [Layout & design system](04-layout-design-system.md) | ✅ Done | 02, 03 | M2 |
 | 05 | [Core pages](05-core-pages.md) | ✅ Done | 04 | M2 |
 | 06 | [SEO & metadata](06-seo-metadata.md) | ✅ Done | 05 | M2 |
-| 07 | [CI/CD → GitHub Pages](07-ci-cd-github-pages.md) | 📝 Draft | 01 (pipeline), 05 (live site) | M2 |
+| 07 | [CI/CD → GitHub Pages](07-ci-cd-github-pages.md) | 🔵 Ready | 01 (pipeline), 05 (live site) | M2 |
 | 11 | [Final design variant](11-final-design-variant.md) | 📝 Draft · blocked on customer | 05 + customer choice | M2 |
 | 08 | [Partners section](08-partners-section.md) | 📝 Draft · backlog | 05 | M3 |
 | 09 | [Cloudflare Pages](09-cloudflare-pages.md) | 📝 Draft · backlog | 07 | M4 |
