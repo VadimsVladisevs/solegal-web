@@ -16,6 +16,8 @@ Keep only the design variant the customer approves (A, B or C; see [design.md](.
 - Remove the floating design switcher and the variant handling in the language switcher
 - Update `docs/design.md` (drop the variants section, describe the final look) and `docs/architecture.md`
 - Update tests that cover variants
+- Replace the placeholder favicon set and OG image (step 06) with the customer's brand
+- Remove the variant `noindex` / canonical handling in the SEO meta (step 06)
 
 **Out of scope:** further design changes the customer may request; track them as a new sub-plan.
 

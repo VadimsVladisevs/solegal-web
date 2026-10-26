@@ -17,7 +17,7 @@ Run the production site on Cloudflare Pages with a custom domain.
 ## Scope
 
 - Create the Cloudflare Pages project connected to the production repo
-- Build settings: build command, output directory, Node version, `BASE_PATH=/`
+- Build settings: build command, output directory, Node version, `BASE_PATH=/`, `SITE_URL=<production origin>`, `SITE_INDEXABLE=true`
 - Activate and verify `_redirects` (real 302 for `/` → `/en/`) and `_headers`
 - Custom domain + DNS, HTTPS
 - Preview deployments per PR
@@ -47,4 +47,7 @@ Run the production site on Cloudflare Pages with a custom domain.
 
 ## Decisions log
 
-_Empty — fill in during discussion._
+From step 06 (2026-10-26):
+
+- Production must set `SITE_URL` and `SITE_INDEXABLE=true`; the demo defaults keep every page `noindex`.
+- Analytics was deferred here; Cloudflare Web Analytics is the candidate (no cookies, no consent banner).

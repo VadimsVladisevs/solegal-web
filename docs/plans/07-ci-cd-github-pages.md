@@ -26,6 +26,7 @@ Every push to `main` is checked and deployed to GitHub Pages automatically. Pull
 - [ ] Enable GitHub Pages (source: GitHub Actions) in the repo settings
 - [ ] Check that an unknown URL under `/solegal-web/` shows the step-05 404 page in the right locale
 - [ ] Check the live site on a real phone (iOS Safari and Android Chrome)
+- [ ] Check the link preview (e.g. opengraph.xyz) for each locale
 - [ ] Draft `_redirects` (`/` → `/en/`) and `_headers` (security headers)
 - [ ] Add a status badge and the site URL to the README
 
@@ -35,6 +36,7 @@ Every push to `main` is checked and deployed to GitHub Pages automatically. Pull
 - A failing lint/test check blocks the deploy
 - All routes and assets work under the `/solegal-web/` sub-path
 - The live site has been checked once on a real phone (iOS Safari and Android Chrome)
+- A link-preview check shows the correct card
 
 ## Open questions for discussion
 
@@ -47,3 +49,8 @@ From step 05 (2026-10-26):
 
 - The real-phone check moved here from step 05, because the site is first reachable from a phone once it is deployed.
 - Step 05 builds `404.html`; this step only checks that GitHub Pages serves it under `/solegal-web/`.
+
+From step 06 (2026-10-26):
+
+- The link-preview check moved here from step 06, because it needs a public URL.
+- The demo build keeps the defaults `SITE_URL=https://vadimsvladisevs.github.io` and `SITE_INDEXABLE=false` (not indexed).
