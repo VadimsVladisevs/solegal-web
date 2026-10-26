@@ -25,6 +25,8 @@ A **one-page scrolling site** per locale (`en`, `lv`, `ru`). The header navigati
 | 5 | Contact | `#contact` | label, H2, email (`mailto:`) and phone (`tel:`) |
 | 6 | Footer | — | small logo, © year + firm name, language switcher |
 
+**404 page:** one `404.html` for every unknown URL, in the "quiet" layout of hero A: label "Error 404", H1, rule, short text and a "Back to home" button to `/{lang}/`, between the normal header and footer. Its locale comes from the URL prefix (`/lv/…`, `/ru/…`, otherwise `en`), picked client-side; without JS it is English.
+
 Services are not part of the site for now. Partners will come later as a new section (step 08).
 
 ### Content fields (for the content layer and the future Sanity schemas)
@@ -125,7 +127,7 @@ The site must work on phones, tablets and desktops.
 - **Safe areas:** the sticky header and the mobile menu respect `env(safe-area-inset-*)` on notched phones.
 - **Contact:** email and phone are tap-to-act links (`mailto:`, `tel:`).
 - **Reference viewports:** 360 × 800 (phone), 768 × 1024 (tablet), 1280 × 800 (desktop).
-- **Testing:** Playwright runs on a desktop project and a mobile project (`devices["Pixel 7"]`, Chromium emulation). A manual check on a real phone (iOS Safari and Android Chrome) happens before step 05 is done.
+- **Testing:** Playwright runs on a desktop project and a mobile project (`devices["Pixel 7"]`, Chromium emulation). A manual check on a real phone (iOS Safari and Android Chrome) happens on the deployed site in step 07.
 
 ## Logo
 
@@ -166,5 +168,5 @@ Three variants are built so the customer can choose. They share **all tokens, ty
 
 - Section components take one prop, `variant: "a" | "b" | "c"`. It only switches styling and the variant-only pieces (B's watermark, C's logo panel). Content and data are identical.
 - Routes: the home route renders variant A; thin routes `/{lang}/b` and `/{lang}/c` render the same page with B / C. That makes 9 prerendered pages.
-- A small floating **design switcher** ("Design A · B · C") links between the variant URLs in the same locale. The language switcher keeps the current variant.
+- A small floating **design switcher** ("Design A · B · C") links between the variant URLs in the same locale. It is a "light pill" fixed bottom-right (with safe-area insets): white, `line` border, `muted` label, and three 44 × 44px links; the current one is filled `brand` with `on-brand` text and has `aria-current="page"`. The language switcher keeps the current variant.
 - **Removal:** once the customer picks one, step [11](plans/11-final-design-variant.md) makes the chosen treatment the only one at `/{lang}/`. It deletes the `b`/`c` routes, the `variant` prop and its branches, the switcher, and this section.

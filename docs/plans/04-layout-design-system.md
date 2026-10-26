@@ -1,6 +1,6 @@
 # 04 — Layout & design system
 
-**Status:** 🔵 Ready
+**Status:** ✅ Done
 **Depends on:** 02, 03
 **Milestone:** M2
 
