@@ -1,6 +1,6 @@
 # 07 — CI/CD → GitHub Pages
 
-**Status:** 🔵 Ready
+**Status:** 🟡 In progress
 **Depends on:** 01 (pipeline can start early), 05 (for a meaningful live site)
 **Milestone:** M2
 
@@ -15,21 +15,21 @@ Every push to `main` is checked and deployed to GitHub Pages automatically. Pull
 - `404.html` (built in step 05) served by GitHub Pages under the sub-path
 - Real-phone check of the live site (moved here from step 05)
 - Dependency caching (npm and Playwright browsers)
-- Drafted `public/_redirects` and `public/_headers` for future Cloudflare use (no effect on GitHub Pages)
+- Drafted `public/_headers` for future Cloudflare use (no effect on GitHub Pages)
 
 **Out of scope:** Cloudflare deployment (step 09).
 
 ## Tasks
 
-- [ ] Make the repo public (confirm with the user right before doing it)
-- [ ] CI workflow for PRs and pushes
-- [ ] Deploy job using `actions/deploy-pages`
-- [ ] Enable GitHub Pages (source: GitHub Actions) in the repo settings
+- [x] Make the repo public (confirm with the user right before doing it)
+- [x] CI workflow for PRs and pushes
+- [x] Deploy job using `actions/deploy-pages`
+- [x] Enable GitHub Pages (source: GitHub Actions) in the repo settings
 - [ ] Check that an unknown URL under `/solegal-web/` shows the step-05 404 page in the right locale
 - [ ] Check the live site on a real phone (iOS Safari and Android Chrome)
 - [ ] Check the link preview (e.g. opengraph.xyz) for each locale
-- [ ] Draft `_redirects` (`/` → `/en/`) and `_headers` (security headers)
-- [ ] Create `README.md` with a status badge and the site URL
+- [x] Draft `_headers` (security headers)
+- [x] Create `README.md` with a status badge and the site URL
 
 ## Done when
 
@@ -59,3 +59,8 @@ Discussion (2026-10-26):
 - One workflow with two jobs. The `check` job runs on PRs and pushes to `main`: `npm ci` → `lint` → `typecheck` → `test` → `test:e2e`. It then uploads `build/client` as the Pages artifact. `test:e2e` already builds the site with the default `BASE_PATH=/solegal-web/`, so the site is built once and the tested build is the one deployed. The `deploy` job runs only on pushes to `main`, needs `check`, and uses a concurrency group.
 - Node version comes from `.nvmrc`. npm and Playwright browsers are cached.
 - There is no `README.md` yet, so this step creates one.
+
+Implementation (2026-10-26):
+
+- No `_redirects` file. A Cloudflare `/` → `/en/` rule would run before the prerendered `/` page and bypass its browser-language redirect, which [architecture.md](../architecture.md#routing-and-i18n) says is the same on both hosts. Step 09 can add redirects if it needs them.
+- `_headers` has no Content-Security-Policy yet: React Router and the `/` redirect page use inline scripts, so a CSP needs hashes or nonces. Left for step 09.
