@@ -14,6 +14,10 @@ export interface SiteSettings {
   aboutLabel: string;
   aboutTitle: string;
   aboutBody: string[];
+  /** Page title for search results and link previews; defaults to `firmName`. */
+  metaTitle?: string;
+  /** Meta description; defaults to `heroLead`. */
+  metaDescription?: string;
 }
 
 export interface TeamMember {

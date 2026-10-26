@@ -1,6 +1,6 @@
 # 06 — SEO & metadata
 
-**Status:** 🔵 Ready
+**Status:** ✅ Done
 **Depends on:** 05
 **Milestone:** M2
 
@@ -21,15 +21,15 @@ Every page in every locale has correct metadata for search engines and link prev
 
 ## Tasks
 
-- [ ] `SITE_URL` and `SITE_INDEXABLE` resolved from env (`site.ts`)
-- [ ] Optional `metaTitle` / `metaDescription` in `SiteSettings`, filled for every locale
-- [ ] Meta helper used by route `meta` exports
-- [ ] hreflang + canonical; variant pages noindex with canonical to the locale home
-- [ ] Open Graph + Twitter tags + default image
-- [ ] Sitemap, robots and web manifest as prerendered resource routes
-- [ ] Placeholder favicon set + `theme-color`
-- [ ] JSON-LD `LegalService`
-- [ ] Tests: built HTML contains the expected tags per locale; sitemap and robots are correct
+- [x] `SITE_URL` and `SITE_INDEXABLE` resolved from env (`site.ts`)
+- [x] Optional `metaTitle` / `metaDescription` in `SiteSettings`, filled for every locale
+- [x] Meta helper used by route `meta` exports
+- [x] hreflang + canonical; variant pages noindex with canonical to the locale home
+- [x] Open Graph + Twitter tags + default image
+- [x] Sitemap, robots and web manifest as prerendered resource routes
+- [x] Placeholder favicon set + `theme-color`
+- [x] JSON-LD `LegalService`
+- [x] Tests: built HTML contains the expected tags per locale; sitemap and robots are correct
 
 ## Done when
 
@@ -53,7 +53,8 @@ Discussed 2026-10-26:
 - **`robots.txt` never uses `Disallow`.** It would hide the `noindex` tag from crawlers and block link-preview bots. Crawlers ignore a `robots.txt` under `/solegal-web/` anyway.
 - **Non-content pages.** Design variants `/b/`, `/c/`: `noindex`, canonical to the locale home, not in the sitemap. `/` and `404.html`: `noindex`, not in the sitemap. `x-default` → `/en/`.
 - **Titles and descriptions come from content**, so editors can change them in Sanity: optional `metaTitle` / `metaDescription` in `SiteSettings`, falling back to `firmName` / `heroLead`.
-- **Placeholder assets.** A monogram favicon set and one shared 1200×630 OG image, made from the design tokens. No mockup round; step 11 replaces them with the customer's brand.
+- **Placeholder assets.** A monogram favicon set and one shared 1200×630 OG image, made from the logo (`docs/images/logo-white.svg`) on the `brand` color. No mockup round; step 11 replaces them with the customer's brand.
 - **JSON-LD `LegalService`** with name, URL, email, phone, logo and language. No address, opening hours or registration number yet; add optional fields when the customer provides them.
 - **No analytics** in the demo. Decided in step 09 (Cloudflare Web Analytics is the candidate: no cookies, no consent banner).
 - **Verification:** Playwright checks the built HTML, sitemap and robots. The link-preview check moved to step 07.
+- **Implementation note:** a parent route's `meta` cannot see its child routes, so the variant routes (`home-b`, `home-c`) add `noindex` to the `:lang` tags themselves (`withNoindex`).

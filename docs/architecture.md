@@ -64,8 +64,10 @@ app/
       config.ts            # locales, default locale
       dictionaries/        # UI strings per locale
       use-t.ts
+    seo/meta.ts            # SEO meta tags (canonical, hreflang, OG, JSON-LD)
   styles/app.css           # Tailwind entry + theme tokens
 public/
+  favicon, icons, og-image # placeholder brand assets (replaced in step 11)
   _redirects  _headers     # Cloudflare Pages (ignored by GitHub Pages)
 e2e/                       # Playwright specs
 ```
@@ -102,6 +104,13 @@ interface ContentSource {
 - The active source is selected in `app/lib/content/index.ts`, later via an env variable.
 - UI dictionaries go through the same layer, so editors can manage UI strings in Sanity later (step 10).
 - Content types (`SiteSettings`, `TeamMember`, `ContactInfo`, `Partner`) are designed to map 1:1 to future Sanity document schemas. Their fields are listed in [design.md](design.md#content-fields-for-the-content-layer-and-the-future-sanity-schemas).
+
+## SEO and metadata
+
+- The `:lang` layout's `meta` (`app/lib/seo/meta.ts`) sets the title, description, canonical, `hreflang` alternates (all locales + `x-default` → `/en/`), Open Graph and Twitter tags, and JSON-LD `LegalService`. Titles and descriptions come from `SiteSettings` (`metaTitle`, `metaDescription`).
+- Absolute URLs are `SITE_URL` + `BASE_PATH` + path. `SITE_URL` and `SITE_INDEXABLE` are read in `site.ts` by loaders, so only at build time.
+- Pages are `noindex` unless `SITE_INDEXABLE=true`. The design variants, `/` and `404.html` are always `noindex`.
+- `sitemap.xml`, `robots.txt` and `manifest.webmanifest` are prerendered resource routes. `robots.txt` never disallows crawling: that would hide `noindex` from crawlers and block link-preview bots.
 
 ## Styling and design tokens
 
@@ -155,6 +164,8 @@ Build output is a plain static folder (React Router's `build/client`). It can be
 | Variable | Used by | Demo | Production |
 |---|---|---|---|
 | `BASE_PATH` | Vite `base`, router `basename` | `/solegal-web/` | `/` |
+| `SITE_URL` | absolute URLs (canonical, hreflang, OG, sitemap) | `https://vadimsvladisevs.github.io` | production origin (step 09) |
+| `SITE_INDEXABLE` | `noindex` on every page unless `true` | unset (not indexed) | `true` (step 09) |
 | `CONTENT_SOURCE` | content layer selector | `local` | `sanity` (step 10) |
 | `SANITY_PROJECT_ID` | sanitySource | — | step 10 |
 | `SANITY_DATASET` | sanitySource | — | step 10 |

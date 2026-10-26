@@ -11,6 +11,9 @@ export default {
   ssr: false,
   prerender: [
     "/",
+    "/sitemap.xml",
+    "/robots.txt",
+    "/manifest.webmanifest",
     ...locales.flatMap((locale) => pages.map((page) => `/${locale}/${page}`)),
   ],
   basename: basePath,

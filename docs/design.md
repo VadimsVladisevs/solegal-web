@@ -33,7 +33,7 @@ Services are not part of the site for now. Partners will come later as a new sec
 
 | Type | Fields |
 |---|---|
-| `SiteSettings` | `firmName`, `heroLabel`, `heroTitle`, `heroLead`, `heroCta`, `aboutLabel`, `aboutTitle`, `aboutBody: string[]` |
+| `SiteSettings` | `firmName`, `heroLabel`, `heroTitle`, `heroLead`, `heroCta`, `aboutLabel`, `aboutTitle`, `aboutBody: string[]`, `metaTitle` and `metaDescription` (optional; default to `firmName` and `heroLead`) |
 | `TeamMember` | `name`, `role`, `bio`, `photo` (`{ src, alt }`, optional → placeholder) |
 | `ContactInfo` | `email`, `phone` (display string; `tel:` link derived without spaces) |
 

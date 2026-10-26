@@ -12,6 +12,7 @@ import { useSyncExternalStore } from "react";
 import { NotFoundPage } from "~/components/not-found-page";
 import { content } from "~/lib/content";
 import { defaultLocale, localeFromPath, locales } from "~/lib/i18n/config";
+import { themeColor } from "~/lib/seo/meta";
 import type { Route } from "./+types/root";
 
 import "@fontsource-variable/montserrat";
@@ -32,6 +33,21 @@ export async function loader() {
   return { notFound: Object.fromEntries(entries) };
 }
 
+export function links(): Route.LinkDescriptors {
+  const base = import.meta.env.BASE_URL;
+  return [
+    { rel: "icon", href: `${base}favicon.ico`, sizes: "32x32" },
+    { rel: "icon", href: `${base}icon.svg`, type: "image/svg+xml" },
+    { rel: "apple-touch-icon", href: `${base}apple-touch-icon.png` },
+    { rel: "manifest", href: `${base}manifest.webmanifest` },
+  ];
+}
+
+// Only 404.html matches the root route alone; page routes replace these tags.
+export function meta(): Route.MetaDescriptors {
+  return [{ name: "robots", content: "noindex" }];
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
   const { pathname } = useLocation();
   return (
@@ -39,6 +55,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content={themeColor} />
         <Meta />
         <Links />
       </head>

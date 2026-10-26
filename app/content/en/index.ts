@@ -15,6 +15,9 @@ export const en: LocaleContent = {
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
     ],
+    metaTitle: "SO Legal — law firm",
+    metaDescription:
+      "Clear legal advice for business and private clients. Meet the SO Legal team and get in touch.",
   },
   team: [
     {

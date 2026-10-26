@@ -6,22 +6,40 @@ import { SkipLink } from "~/components/skip-link";
 import { content } from "~/lib/content";
 import { isLocale } from "~/lib/i18n/config";
 import { I18nContext } from "~/lib/i18n/use-t";
+import { seoMeta } from "~/lib/seo/meta";
 import { useVariant } from "~/lib/variant";
+import { indexable, siteUrl } from "../../site";
 import type { Route } from "./+types/lang";
 
 export async function loader({ params }: Route.LoaderArgs) {
   if (!isLocale(params.lang)) throw data(null, { status: 404 });
   const locale = params.lang;
-  const [dictionary, siteSettings] = await Promise.all([
+  const [dictionary, siteSettings, contactInfo] = await Promise.all([
     content.getDictionary(locale),
     content.getSiteSettings(locale),
+    content.getContactInfo(locale),
   ]);
-  return { locale, dictionary, firmName: siteSettings.firmName };
+  // Read at build time (prerender); the env never reaches the browser.
+  const seo = {
+    siteUrl,
+    indexable,
+    title: siteSettings.metaTitle || siteSettings.firmName,
+    description: siteSettings.metaDescription || siteSettings.heroLead,
+    email: contactInfo.email,
+    phone: contactInfo.phone,
+  };
+  return { locale, dictionary, firmName: siteSettings.firmName, seo };
 }
 
-// A minimal title for now; step 06 adds per-page titles and SEO tags.
 export function meta({ loaderData }: Route.MetaArgs) {
-  return [{ title: loaderData?.firmName }];
+  if (!loaderData) return [];
+  const { locale, firmName, seo } = loaderData;
+  return seoMeta({
+    ...seo,
+    basePath: import.meta.env.BASE_URL,
+    locale,
+    firmName,
+  });
 }
 
 export default function LangLayout({ loaderData }: Route.ComponentProps) {
