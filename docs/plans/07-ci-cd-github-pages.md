@@ -26,7 +26,7 @@ Every push to `main` is checked and deployed to GitHub Pages automatically. Pull
 - [x] Deploy job using `actions/deploy-pages`
 - [x] Enable GitHub Pages (source: GitHub Actions) in the repo settings
 - [x] Check that an unknown URL under `/solegal-web/` shows the step-05 404 page in the right locale
-- [ ] Check the live site on a real phone (iOS Safari and Android Chrome)
+- [x] Check the live site on a real phone (iOS Safari and Android Chrome)
 - [ ] Check the link preview (e.g. opengraph.xyz) for each locale
 - [x] Draft `_headers` (security headers)
 - [x] Create `README.md` with a status badge and the site URL
