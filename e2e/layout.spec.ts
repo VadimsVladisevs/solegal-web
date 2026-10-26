@@ -1,6 +1,9 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
+const heroTitleLv =
+  "Skaidras juridiskās konsultācijas uzņēmumiem un privātpersonām";
+
 // The last one is the 404 page.
 const pages = ["en/", "lv/b/", "ru/c/", "ru/missing/"];
 
@@ -42,6 +45,22 @@ test("the language switcher keeps the design variant", async ({ page }) => {
   await expect(page.locator("html")).toHaveAttribute("lang", "lv");
   // The client-side navigation loaded the page's data (not the 404 page).
   await expect(page.locator("#team")).toBeVisible();
+  await expect(page.locator("h1")).toHaveText(heroTitleLv);
+});
+
+test("the language switcher shows the page content in the new locale", async ({
+  page,
+}) => {
+  await page.goto("./en/");
+  await page
+    .getByRole("navigation", { name: "Language" })
+    .getByRole("link", { name: "lv" })
+    .filter({ visible: true })
+    .first()
+    .click();
+  await expect(page).toHaveURL(/\/lv\/$/);
+  // From the page's own loader, not only the :lang layout's dictionary.
+  await expect(page.locator("h1")).toHaveText(heroTitleLv);
 });
 
 test.describe("at 320px", () => {

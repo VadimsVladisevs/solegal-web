@@ -1,3 +1,4 @@
+import type { ShouldRevalidateFunctionArgs } from "react-router";
 import { AboutSection } from "~/components/about-section";
 import { ContactSection } from "~/components/contact-section";
 import { HeroSection } from "~/components/hero-section";
@@ -16,6 +17,17 @@ export async function loader({ params }: Route.LoaderArgs) {
     content.getContactInfo(params.lang),
   ]);
   return { siteSettings, team, contactInfo };
+}
+
+// With `ssr: false`, React Router reloads prerendered data only when the
+// route's own path params change. This index route has none, so without this
+// the language switcher would keep the previous locale's content.
+export function shouldRevalidate({
+  currentParams,
+  nextParams,
+  defaultShouldRevalidate,
+}: ShouldRevalidateFunctionArgs) {
+  return defaultShouldRevalidate || currentParams.lang !== nextParams.lang;
 }
 
 export const handle: VariantHandle = { variant: "a" };

@@ -64,3 +64,4 @@ Implementation (2026-10-26):
 
 - No `_redirects` file. A Cloudflare `/` → `/en/` rule would run before the prerendered `/` page and bypass its browser-language redirect, which [architecture.md](../architecture.md#routing-and-i18n) says is the same on both hosts. Step 09 can add redirects if it needs them.
 - `_headers` has no Content-Security-Policy yet: React Router and the `/` redirect page use inline scripts, so a CSP needs hashes or nonces. Left for step 09.
+- Real-phone check (Chrome on Android, Safari on iPhone) found that the language switcher changed the URL but kept the previous locale's page content until a reload. Cause: with `ssr: false`, React Router reloads prerendered data only when a route's own path params change, and the home index route has none. Fixed with `shouldRevalidate` on the home routes. An e2e test now checks the page text after switching.

@@ -3,7 +3,7 @@ import type { VariantHandle } from "~/lib/variant";
 import type { Route } from "./+types/home-b";
 
 // Design variant B: the home page with another treatment (removed in step 11).
-export { default, loader } from "./home";
+export { default, loader, shouldRevalidate } from "./home";
 
 export const handle: VariantHandle = { variant: "b" };
 
