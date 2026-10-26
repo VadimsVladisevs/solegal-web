@@ -1,4 +1,5 @@
 import { Outlet, data } from "react-router";
+import { DesignSwitcher } from "~/components/design-switcher";
 import { Footer } from "~/components/footer";
 import { Header } from "~/components/header";
 import { SkipLink } from "~/components/skip-link";
@@ -33,6 +34,7 @@ export default function LangLayout({ loaderData }: Route.ComponentProps) {
         <Outlet />
       </main>
       <Footer firmName={loaderData.firmName} />
+      <DesignSwitcher />
     </I18nContext>
   );
 }

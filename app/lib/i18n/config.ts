@@ -31,6 +31,12 @@ export function pickLocale(
   return fallback;
 }
 
+/** The locale a path starts with (`/lv/…` → `lv`), else the default. */
+export function localeFromPath(pathname: string): Locale {
+  const segment = pathname.split("/")[1];
+  return isLocale(segment) ? segment : defaultLocale;
+}
+
 /** The same page in another locale: `/en/b` → `/lv/b`. */
 export function localizedPath(pathname: string, locale: Locale): string {
   const [, , ...rest] = pathname.split("/");

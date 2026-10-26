@@ -11,13 +11,18 @@ export const desktopQuery = "(width >= 721px)";
 interface MobileMenuProps {
   /** Set when the header is `brand` (variant B). */
   onBrand?: boolean;
+  /** Prefix for the section anchors; see `Header`. */
+  homeHref?: string;
 }
 
 /**
  * The "Menu" button and its dropdown panel under the sticky header. Must sit
  * inside the header: the panel and backdrop are positioned against it.
  */
-export function MobileMenu({ onBrand = false }: MobileMenuProps) {
+export function MobileMenu({
+  onBrand = false,
+  homeHref = "",
+}: MobileMenuProps) {
   const t = useT();
   const [open, setOpen] = useState(false);
   const panelId = useId();
@@ -73,7 +78,12 @@ export function MobileMenu({ onBrand = false }: MobileMenuProps) {
       >
         <Container className="flex flex-col gap-4 py-4">
           <nav aria-label={t.nav.label}>
-            <NavLinks layout="column" onBrand={onBrand} onNavigate={close} />
+            <NavLinks
+              layout="column"
+              onBrand={onBrand}
+              homeHref={homeHref}
+              onNavigate={close}
+            />
           </nav>
           <LanguageSwitcher onBrand={onBrand} className="-ml-3" />
         </Container>

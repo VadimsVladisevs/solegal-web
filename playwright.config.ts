@@ -13,7 +13,7 @@ export default defineConfig({
   },
   projects: [
     { name: "desktop", use: { ...devices["Desktop Chrome"] } },
-    // Chromium emulation of a phone; real-device checks happen in step 05.
+    // Chromium emulation of a phone; real-device checks happen in step 07.
     { name: "mobile", use: { ...devices["Pixel 7"] } },
   ],
   // Smoke tests run against the built static site, never the dev server.

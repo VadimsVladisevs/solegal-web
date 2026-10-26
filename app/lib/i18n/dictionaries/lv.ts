@@ -23,6 +23,15 @@ export const lv: Dictionary = {
   footer: {
     rights: "Visas tiesības aizsargātas.",
   },
+  designSwitcher: {
+    label: "Dizains",
+  },
+  notFound: {
+    label: "Kļūda 404",
+    title: "Lapa nav atrasta",
+    text: "Lapa, kuru meklējat, neeksistē vai ir pārvietota.",
+    home: "Uz sākumlapu",
+  },
   languageSwitcher: {
     label: "Valoda",
   },

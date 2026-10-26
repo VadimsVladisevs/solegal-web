@@ -1,7 +1,8 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-const pages = ["en/", "lv/b/", "ru/c/"];
+// The last one is the 404 page.
+const pages = ["en/", "lv/b/", "ru/c/", "ru/missing/"];
 
 for (const path of pages) {
   test(`/${path} has no serious or critical axe violations`, async ({
@@ -39,6 +40,8 @@ test("the language switcher keeps the design variant", async ({ page }) => {
     .click();
   await expect(page).toHaveURL(/\/lv\/b\/$/);
   await expect(page.locator("html")).toHaveAttribute("lang", "lv");
+  // The client-side navigation loaded the page's data (not the 404 page).
+  await expect(page.locator("#team")).toBeVisible();
 });
 
 test.describe("at 320px", () => {
@@ -68,6 +71,20 @@ test.describe("on mobile", () => {
       .locator("a, button")
       .filter({ visible: true });
     expect(await targets.count()).toBeGreaterThan(0);
+    for (const target of await targets.all()) {
+      const box = await target.boundingBox();
+      const name = (await target.textContent()) ?? "";
+      expect(box?.width, name).toBeGreaterThanOrEqual(44);
+      expect(box?.height, name).toBeGreaterThanOrEqual(44);
+    }
+  });
+
+  test("contact links and the design switcher are at least 44px", async ({
+    page,
+  }) => {
+    await page.goto("./en/");
+    const targets = page.locator("#contact a, nav[aria-label='Design'] a");
+    expect(await targets.count()).toBe(5);
     for (const target of await targets.all()) {
       const box = await target.boundingBox();
       const name = (await target.textContent()) ?? "";

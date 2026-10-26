@@ -22,6 +22,15 @@ export const en = {
   footer: {
     rights: "All rights reserved.",
   },
+  designSwitcher: {
+    label: "Design",
+  },
+  notFound: {
+    label: "Error 404",
+    title: "Page not found",
+    text: "The page you are looking for does not exist or has moved.",
+    home: "Back to home",
+  },
   languageSwitcher: {
     label: "Language",
   },

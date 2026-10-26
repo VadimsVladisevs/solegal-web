@@ -42,6 +42,10 @@
   --text-h1: clamp(2rem, 1.5455rem + 2.2727vw, 3.25rem);
   --text-h1--line-height: 1.12;
   --text-h1--letter-spacing: -0.01em;
+  /* Decorative "SO" watermark in the variant B hero. */
+  --text-watermark: clamp(10rem, 26vw, 23.75rem);
+  --text-watermark--line-height: 1;
+  --text-watermark--letter-spacing: -0.02em;
 
   --tracking-label: 0.2em;
   --tracking-nav: 0.14em;
@@ -67,6 +71,21 @@
     padding-left: max(--spacing(8), env(safe-area-inset-left));
     padding-right: max(--spacing(8), env(safe-area-inset-right));
   }
+}
+
+/* On a full-width band: lines its content up with the container's left edge. */
+@utility pl-page-edge {
+  padding-left: max(
+    --spacing(8),
+    env(safe-area-inset-left),
+    calc((100% - var(--container-page)) / 2 + --spacing(8))
+  );
+}
+
+/* A floating element's corner offset, clear of notches and home bars. */
+@utility corner-safe {
+  right: max(--spacing(4), env(safe-area-inset-right));
+  bottom: max(--spacing(4), env(safe-area-inset-bottom));
 }
 
 @utility pt-safe {

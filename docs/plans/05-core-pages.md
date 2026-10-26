@@ -1,6 +1,6 @@
 # 05 — Core pages
 
-**Status:** 🔵 Ready
+**Status:** ✅ Done
 **Depends on:** 04
 **Milestone:** M2
 
@@ -21,14 +21,14 @@ See [design.md](../design.md) for sections, content fields and variants.
 
 ## Tasks
 
-- [ ] Review the existing demo content for all 3 locales (written in step 03)
-- [ ] Hero section, including B's "SO" watermark and C's logo panel
-- [ ] About section
-- [ ] Team section with `TeamMemberCard` and an inline SVG placeholder photo
-- [ ] Contact section (`mailto:` / `tel:` links)
-- [ ] Design switcher
-- [ ] 404 page (`404.html`, locale from the URL)
-- [ ] Playwright: every page × locale × variant renders, in the desktop and mobile projects; 404 renders in each locale
+- [x] Review the existing demo content for all 3 locales (written in step 03)
+- [x] Hero section, including B's "SO" watermark and C's logo panel
+- [x] About section
+- [x] Team section with `TeamMemberCard` and an inline SVG placeholder photo
+- [x] Contact section (`mailto:` / `tel:` links)
+- [x] Design switcher
+- [x] 404 page (`404.html`, locale from the URL)
+- [x] Playwright: every page × locale × variant renders, in the desktop and mobile projects; 404 renders in each locale
 
 ## Done when
 
@@ -62,3 +62,13 @@ Discussed 2026-10-26 (see the [mockup](https://claude.ai/artifact/WjcGMd3KV4YVZM
 - **404 page:** the "quiet" layout, like hero A: label "Error 404", H1, rule, short text, and a "Back to home" button to `/{lang}/`. It uses the normal header and footer (variant A). One `404.html` serves every unknown URL; the locale comes from the URL prefix (`/lv/…` → lv, `/ru/…` → ru, otherwise en). The locale is picked client-side, so without JS the page is English. All its text comes from the dictionaries.
 - **Real-phone check** (iOS Safari and Android Chrome) moves to step 07, on the deployed GitHub Pages URL. This step relies on the Playwright mobile project.
 - **Team card** follows the approved step-02 mockup; the placeholder photo is an inline, decorative SVG silhouette (`photo-bg` / `photo-fg`).
+
+Found while building (2026-10-26):
+
+- **Sections** are components in `app/components/` (`HeroSection`, `AboutSection`, `TeamSection`, `TeamMemberCard`, `ContactSection`); each takes `variant` and picks its own section tone. `home.tsx` loads site settings, team and contact info through the content layer.
+- **Trailing slashes:** the variant pages are prerendered as `/{lang}/b/` and `/{lang}/c/`. A client-side navigation to a canonical URL loads `b/_.data`; before this fix, the design and language switchers landed on the 404 page.
+- **404 mechanism:** `404.html` is React Router's SPA fallback (`scripts/write-404.ts` copies it). The root `ErrorBoundary` and `HydrateFallback` render `NotFoundPage`. The root `loader` bakes in every locale's dictionary at build time. The page hydrates in English and switches to the URL's locale. React doesn't patch `<html lang>` during hydration, so the page sets it in an effect.
+- **Known gap:** on a URL whose first segment is not a locale (`/xyz/`), React Router first tries to load `:lang` data. It logs one console error, then shows the English 404.
+- **Preview server:** `vite preview` answers unknown page URLs with `404.html` and status 404 (a plugin in `vite.config.ts`), like GitHub Pages and Cloudflare.
+- **B watermark** is CSS generated content (`after:content-['SO']`), because axe checks the contrast of hidden text too.
+- **Switcher spacing:** a spacer after the footer keeps the end of the page clear of the floating pill.

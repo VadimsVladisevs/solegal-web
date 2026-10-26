@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "react-router dev",
-    "build": "react-router build && node scripts/flatten-base-path.ts",
+    "build": "react-router build && node scripts/flatten-base-path.ts && node scripts/write-404.ts",
     "preview": "vite preview --outDir build/client",
     "test": "vitest run",
     "test:e2e": "playwright test",

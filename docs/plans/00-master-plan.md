@@ -26,7 +26,7 @@ Legend: 📝 Draft (needs discussion) · 🔵 Ready · 🟡 In progress · ✅ D
 | 02 | [Design discussion](02-design-discussion.md) | ✅ Done | — (parallel with 01) | M1 |
 | 03 | [i18n & content layer](03-i18n-content-layer.md) | ✅ Done | 01 | M1 |
 | 04 | [Layout & design system](04-layout-design-system.md) | ✅ Done | 02, 03 | M2 |
-| 05 | [Core pages](05-core-pages.md) | 🔵 Ready | 04 | M2 |
+| 05 | [Core pages](05-core-pages.md) | ✅ Done | 04 | M2 |
 | 06 | [SEO & metadata](06-seo-metadata.md) | 📝 Draft | 05 | M2 |
 | 07 | [CI/CD → GitHub Pages](07-ci-cd-github-pages.md) | 📝 Draft | 01 (pipeline), 05 (live site) | M2 |
 | 11 | [Final design variant](11-final-design-variant.md) | 📝 Draft · blocked on customer | 05 + customer choice | M2 |

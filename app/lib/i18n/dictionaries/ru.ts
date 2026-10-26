@@ -23,6 +23,15 @@ export const ru: Dictionary = {
   footer: {
     rights: "Все права защищены.",
   },
+  designSwitcher: {
+    label: "Дизайн",
+  },
+  notFound: {
+    label: "Ошибка 404",
+    title: "Страница не найдена",
+    text: "Страница, которую вы ищете, не существует или была перемещена.",
+    home: "На главную",
+  },
   languageSwitcher: {
     label: "Язык",
   },

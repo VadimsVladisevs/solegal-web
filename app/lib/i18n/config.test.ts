@@ -1,4 +1,10 @@
-import { isLocale, localizedPath, locales, pickLocale } from "./config";
+import {
+  isLocale,
+  localeFromPath,
+  localizedPath,
+  locales,
+  pickLocale,
+} from "./config";
 
 describe("isLocale", () => {
   it("accepts supported locales only", () => {
@@ -36,5 +42,14 @@ describe("localizedPath", () => {
     expect(localizedPath("/en/", "lv")).toBe("/lv/");
     expect(localizedPath("/en/b", "ru")).toBe("/ru/b");
     expect(localizedPath("/lv", "en")).toBe("/en");
+  });
+});
+
+describe("localeFromPath", () => {
+  it("reads the first path segment, else the default locale", () => {
+    expect(localeFromPath("/lv/missing")).toBe("lv");
+    expect(localeFromPath("/ru/")).toBe("ru");
+    expect(localeFromPath("/xyz/")).toBe("en");
+    expect(localeFromPath("/")).toBe("en");
   });
 });
