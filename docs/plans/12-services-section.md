@@ -1,6 +1,6 @@
 # 12 — Services section
 
-**Status:** 🟡 In progress
+**Status:** ✅ Done
 **Depends on:** 05
 **Milestone:** M2
 
