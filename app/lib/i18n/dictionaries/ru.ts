@@ -5,10 +5,15 @@ export const ru: Dictionary = {
   nav: {
     label: "Основная навигация",
     about: "О нас",
+    services: "Услуги",
     team: "Команда",
     contact: "Контакты",
     menu: "Меню",
     close: "Закрыть",
+  },
+  services: {
+    label: "Услуги",
+    title: "Чем мы можем помочь",
   },
   team: {
     label: "Команда",

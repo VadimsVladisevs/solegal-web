@@ -1,6 +1,7 @@
 import type {
   ContactInfo,
   Partner,
+  Service,
   SiteSettings,
   TeamMember,
 } from "~/content/types";
@@ -14,6 +15,7 @@ import type { Dictionary } from "~/lib/i18n/dictionaries/en";
 export interface ContentSource {
   getDictionary(locale: Locale): Promise<Dictionary>;
   getSiteSettings(locale: Locale): Promise<SiteSettings>;
+  getServices(locale: Locale): Promise<Service[]>;
   getTeam(locale: Locale): Promise<TeamMember[]>;
   getContactInfo(locale: Locale): Promise<ContactInfo>;
   getPartners(locale: Locale): Promise<Partner[]>;

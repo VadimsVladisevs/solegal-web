@@ -20,6 +20,7 @@ describe("Header", () => {
       links.map((link) => [link.textContent, link.getAttribute("href")]),
     ).toEqual([
       ["О нас", "#about"],
+      ["Услуги", "#services"],
       ["Команда", "#team"],
       ["Контакты", "#contact"],
     ]);

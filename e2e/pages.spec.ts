@@ -11,9 +11,10 @@ for (const locale of locales) {
   for (const { name, path } of variants) {
     test(`/${locale}/${path} shows every section`, async ({ page }) => {
       await page.goto(`./${locale}/${path}`);
-      for (const id of ["top", "about", "team", "contact"]) {
+      for (const id of ["top", "about", "services", "team", "contact"]) {
         await expect(page.locator(`#${id}`)).toBeVisible();
       }
+      await expect(page.locator("#services article")).toHaveCount(6);
       await expect(page.locator("#team article")).toHaveCount(3);
       await expect(page.locator("#contact a[href^='mailto:']")).toHaveAttribute(
         "href",

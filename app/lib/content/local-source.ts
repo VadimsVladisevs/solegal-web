@@ -21,6 +21,7 @@ export const localDictionaries: Record<Locale, Dictionary> = {
 export const localSource: ContentSource = {
   getDictionary: async (locale) => localDictionaries[locale],
   getSiteSettings: async (locale) => localContent[locale].siteSettings,
+  getServices: async (locale) => localContent[locale].services,
   getTeam: async (locale) => localContent[locale].team,
   getContactInfo: async (locale) => localContent[locale].contactInfo,
   getPartners: async (locale) => localContent[locale].partners,

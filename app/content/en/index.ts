@@ -19,6 +19,38 @@ export const en: LocaleContent = {
     metaDescription:
       "Clear legal advice for business and private clients. Meet the SO Legal team and get in touch.",
   },
+  services: [
+    {
+      title: "Corporate law",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
+    },
+    {
+      title: "Contracts",
+      description:
+        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+    },
+    {
+      title: "Disputes and litigation",
+      description:
+        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla.",
+    },
+    {
+      title: "Employment law",
+      description:
+        "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.",
+    },
+    {
+      title: "Real estate",
+      description:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+    },
+    {
+      title: "Data protection",
+      description:
+        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.",
+    },
+  ],
   team: [
     {
       name: "Anna Bērziņa",

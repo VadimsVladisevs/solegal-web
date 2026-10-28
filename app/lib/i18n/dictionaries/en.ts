@@ -4,10 +4,15 @@ export const en = {
   nav: {
     label: "Main navigation",
     about: "About",
+    services: "Services",
     team: "Team",
     contact: "Contact",
     menu: "Menu",
     close: "Close",
+  },
+  services: {
+    label: "Services",
+    title: "How we can help",
   },
   team: {
     label: "Team",

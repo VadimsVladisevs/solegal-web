@@ -19,6 +19,38 @@ export const lv: LocaleContent = {
     metaDescription:
       "Skaidras juridiskās konsultācijas uzņēmumiem un privātpersonām. Iepazīstieties ar SO Legal komandu un sazinieties ar mums.",
   },
+  services: [
+    {
+      title: "Komerctiesības",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
+    },
+    {
+      title: "Līgumi",
+      description:
+        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
+    },
+    {
+      title: "Strīdi un tiesvedība",
+      description:
+        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla.",
+    },
+    {
+      title: "Darba tiesības",
+      description:
+        "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.",
+    },
+    {
+      title: "Nekustamais īpašums",
+      description:
+        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
+    },
+    {
+      title: "Datu aizsardzība",
+      description:
+        "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur.",
+    },
+  ],
   team: [
     {
       name: "Anna Bērziņa",

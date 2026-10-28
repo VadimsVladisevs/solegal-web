@@ -51,6 +51,9 @@ describe.each(locales)("locale %s", (locale) => {
     expect(await localSource.getSiteSettings(locale)).toBe(
       localContent[locale].siteSettings,
     );
+    expect(await localSource.getServices(locale)).toBe(
+      localContent[locale].services,
+    );
     expect(await localSource.getTeam(locale)).toBe(localContent[locale].team);
     expect(await localSource.getContactInfo(locale)).toBe(
       localContent[locale].contactInfo,

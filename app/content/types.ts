@@ -20,6 +20,11 @@ export interface SiteSettings {
   metaDescription?: string;
 }
 
+export interface Service {
+  title: string;
+  description: string;
+}
+
 export interface TeamMember {
   name: string;
   role: string;
@@ -43,6 +48,7 @@ export interface Partner {
 /** Everything one locale provides. */
 export interface LocaleContent {
   siteSettings: SiteSettings;
+  services: Service[];
   team: TeamMember[];
   contactInfo: ContactInfo;
   partners: Partner[];

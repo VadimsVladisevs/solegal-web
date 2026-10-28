@@ -5,10 +5,15 @@ export const lv: Dictionary = {
   nav: {
     label: "Galvenā navigācija",
     about: "Par mums",
+    services: "Pakalpojumi",
     team: "Komanda",
     contact: "Kontakti",
     menu: "Izvēlne",
     close: "Aizvērt",
+  },
+  services: {
+    label: "Pakalpojumi",
+    title: "Kā mēs varam palīdzēt",
   },
   team: {
     label: "Komanda",

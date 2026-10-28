@@ -21,6 +21,7 @@ export function NavLinks({
   const t = useT();
   const links = [
     { href: `${homeHref}#about`, label: t.nav.about },
+    { href: `${homeHref}#services`, label: t.nav.services },
     { href: `${homeHref}#team`, label: t.nav.team },
     { href: `${homeHref}#contact`, label: t.nav.contact },
   ];
