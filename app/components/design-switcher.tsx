@@ -2,14 +2,16 @@ import { Link } from "react-router";
 import { useLocale, useT } from "~/lib/i18n/use-t";
 import { type Variant, useVariant } from "~/lib/variant";
 
-// Variant A is the home page; B and C are sub-pages (removed in step 11).
+// Variant A is the home page; B–E are sub-pages (removed in step 11).
 const variants: { variant: Variant; path: string }[] = [
   { variant: "a", path: "" },
   { variant: "b", path: "b/" },
   { variant: "c", path: "c/" },
+  { variant: "d", path: "d/" },
+  { variant: "e", path: "e/" },
 ];
 
-/** Floating "Design A · B · C" links between the variants for the customer. */
+/** Floating "Design A · B · C · D · E" links between the variants for the customer. */
 export function DesignSwitcher() {
   const t = useT();
   const locale = useLocale();

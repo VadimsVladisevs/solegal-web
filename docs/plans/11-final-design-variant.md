@@ -6,12 +6,13 @@
 
 ## Goal
 
-Keep only the design variant the customer approves (A, B or C; see [design.md](../design.md#design-variants-pending-customer-choice)) and remove everything that exists only to compare the variants.
+Keep only the design variant the customer approves (A–E; see [design.md](../design.md#design-variants-pending-customer-choice)) and remove everything that exists only to compare the variants.
 
 ## Scope
 
 - The chosen treatment is rendered at `/{lang}/` for every locale
-- Delete the `/{lang}/b` and `/{lang}/c` routes and their prerender entries
+- Delete the `/{lang}/b` … `/{lang}/e` routes that were not chosen, and their prerender entries
+- Remove the unused `variant-d` / `variant-e` components, and the fonts, tokens and photos only they use
 - Remove the `variant` prop and the unused styling branches from section components
 - Remove the floating design switcher and the variant handling in the language switcher
 - Update `docs/design.md` (drop the variants section, describe the final look) and `docs/architecture.md`
@@ -31,7 +32,7 @@ Keep only the design variant the customer approves (A, B or C; see [design.md](.
 ## Done when
 
 - Only `/{lang}/` exists per locale, and it renders the chosen variant
-- No code references `variant`, `/b` or `/c`
+- No code references `variant` or the removed routes
 - Lint, typecheck, unit and e2e tests pass
 
 ## Open questions for discussion

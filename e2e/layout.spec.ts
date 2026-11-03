@@ -5,7 +5,7 @@ const heroTitleLv =
   "Skaidras juridiskās konsultācijas uzņēmumiem un privātpersonām";
 
 // The last one is the 404 page.
-const pages = ["en/", "lv/b/", "ru/c/", "ru/missing/"];
+const pages = ["en/", "lv/b/", "ru/c/", "en/d/", "lv/e/", "ru/missing/"];
 
 for (const path of pages) {
   test(`/${path} has no serious or critical axe violations`, async ({
@@ -103,7 +103,8 @@ test.describe("on mobile", () => {
   }) => {
     await page.goto("./en/");
     const targets = page.locator("#contact a, nav[aria-label='Design'] a");
-    expect(await targets.count()).toBe(5);
+    // 2 contact links + 5 design links (A–E).
+    expect(await targets.count()).toBe(7);
     for (const target of await targets.all()) {
       const box = await target.boundingBox();
       const name = (await target.textContent()) ?? "";

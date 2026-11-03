@@ -11,8 +11,16 @@ describe("DesignSwitcher", () => {
       "/lv/",
       "/lv/b/",
       "/lv/c/",
+      "/lv/d/",
+      "/lv/e/",
     ]);
-    expect(links.map((link) => link.textContent)).toEqual(["A", "B", "C"]);
+    expect(links.map((link) => link.textContent)).toEqual([
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+    ]);
     expect(links[0]).toHaveAttribute("aria-current", "page");
     expect(links[1]).not.toHaveAttribute("aria-current");
   });

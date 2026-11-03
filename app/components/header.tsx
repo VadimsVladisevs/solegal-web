@@ -1,12 +1,14 @@
-import type { Variant } from "~/lib/variant";
+import type { SharedVariant, Variant } from "~/lib/variant";
 import { useT } from "~/lib/i18n/use-t";
+import { HeaderD } from "./variant-d/header-d";
+import { HeaderE } from "./variant-e/header-e";
 import { Container } from "./container";
 import { LanguageSwitcher } from "./language-switcher";
 import { Logo } from "./logo";
 import { MobileMenu } from "./mobile-menu";
 import { NavLinks } from "./nav-links";
 
-const variantClasses: Record<Variant, string> = {
+const variantClasses: Record<SharedVariant, string> = {
   a: "border-b border-line bg-surface text-ink",
   b: "bg-brand text-on-brand",
   c: "bg-surface text-ink",
@@ -21,6 +23,18 @@ interface HeaderProps {
 
 /** Sticky header: logo, section nav and language switcher; a menu on mobile. */
 export function Header({ variant, firmName, homeHref = "" }: HeaderProps) {
+  if (variant === "d") return <HeaderD firmName={firmName} />;
+  if (variant === "e") return <HeaderE firmName={firmName} />;
+  return (
+    <SharedHeader variant={variant} firmName={firmName} homeHref={homeHref} />
+  );
+}
+
+function SharedHeader({
+  variant,
+  firmName,
+  homeHref,
+}: Required<HeaderProps> & { variant: SharedVariant }) {
   const t = useT();
   const onBrand = variant === "b";
 

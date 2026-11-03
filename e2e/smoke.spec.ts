@@ -2,7 +2,7 @@ import { type Page, expect, test } from "@playwright/test";
 
 const locales = ["en", "lv", "ru"];
 // Canonical URLs end with "/": static hosts redirect `/en/b` to `/en/b/`.
-const pages = ["", "b/", "c/"];
+const pages = ["", "b/", "c/", "d/", "e/"];
 
 function trackErrors(page: Page) {
   const errors: string[] = [];

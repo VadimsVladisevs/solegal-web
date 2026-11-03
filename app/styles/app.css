@@ -22,6 +22,8 @@
   --font-*: initial;
   --font-sans:
     "Montserrat Variable", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  /* Display serif of variant D. */
+  --font-serif: "EB Garamond Variable", Georgia, "Times New Roman", serif;
 
   /* Fluid sizes grow linearly from 320px to 1200px viewports. */
   --text-*: initial;
@@ -47,7 +49,21 @@
   --text-watermark--line-height: 1;
   --text-watermark--letter-spacing: -0.02em;
 
+  /* Variants D and E (step 13). */
+  --text-display: clamp(2.375rem, 1.5114rem + 4.3182vw, 4.75rem);
+  --text-display--line-height: 1.08;
+  --text-serif-h2: clamp(2rem, 1.6364rem + 1.8182vw, 3rem);
+  --text-serif-h2--line-height: 1.12;
+  --text-slide: clamp(1.875rem, 1.4205rem + 2.2727vw, 3.125rem);
+  --text-slide--line-height: 1.1;
+  --text-slide--letter-spacing: -0.015em;
+  --text-row: clamp(1.25rem, 1.0227rem + 1.1364vw, 1.875rem);
+  --text-row--line-height: 1.2;
+  --text-stat: clamp(2.125rem, 1.9rem + 1.125vw, 2.75rem);
+  --text-stat--line-height: 1;
+
   --tracking-label: 0.2em;
+  --tracking-wide: 0.26em;
   --tracking-nav: 0.14em;
 
   /* Mobile-first: `md:` means wider than the 720px collapse point. */
@@ -60,6 +76,52 @@
   --container-prose: 65ch;
   --spacing-header: 5rem;
   --spacing-rule: 3.5rem;
+
+  --animate-slow-zoom: slow-zoom 24s ease-out both;
+  --animate-ken-burns: ken-burns 9s linear both;
+  --animate-ken-burns-alt: ken-burns-alt 9s linear both;
+  --animate-ring: ring 7s linear forwards;
+  --animate-wheel: wheel 1.8s infinite;
+
+  @keyframes slow-zoom {
+    from {
+      transform: scale(1.12);
+    }
+  }
+  @keyframes ken-burns {
+    from {
+      transform: scale(1.02);
+    }
+    to {
+      transform: scale(1.14) translate(-2%, -1%);
+    }
+  }
+  @keyframes ken-burns-alt {
+    from {
+      transform: scale(1.14) translate(2%, 0);
+    }
+    to {
+      transform: scale(1.02);
+    }
+  }
+  @keyframes ring {
+    from {
+      stroke-dashoffset: 76;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes wheel {
+    60% {
+      transform: translateY(8px);
+      opacity: 0;
+    }
+    61% {
+      transform: none;
+      opacity: 0;
+    }
+  }
 }
 
 /* Side gutter: at least 16px (32px on wider screens), more on notched phones. */
@@ -115,5 +177,40 @@
   :focus-visible {
     outline: 2px solid var(--color-brand-soft);
     outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Variant E: the large translucent disc behind the hero text. Its right
+     edge curves through the middle of the screen; on phones it is a wide
+     arch over the lower two thirds. */
+  .hero-disc {
+    --size: 300vw;
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    left: calc(50vw - var(--size) / 2);
+    top: 32%;
+    border-radius: 9999px;
+
+    @variant lg {
+      --size: max(118vh, 64vw);
+      left: calc(47vw - var(--size));
+      top: calc(50% - var(--size) / 2);
+    }
+  }
+
+  /* Scroll reveal (variant E). The class is added by script only to
+     elements below the fold, so the page is complete without JavaScript. */
+  [data-reveal] {
+    transition:
+      opacity 0.9s ease,
+      transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  /* Hidden at once (no fade-out on load); only the fade-in is animated. */
+  .reveal-pending {
+    opacity: 0;
+    transform: translateY(2.25rem);
+    transition: none;
   }
 }

@@ -51,6 +51,7 @@ app/
     $lang._index.tsx       # one-page site (hero, about, team, contact), design variant A
     $lang.b.tsx            # same page, design variant B (until step 11)
     $lang.c.tsx            # same page, design variant C (until step 11)
+    $lang.d.tsx, $lang.e.tsx  # design variants D and E: own components (until step 11)
   components/              # layout + UI components
   content/
     types.ts               # content types (mirror future Sanity schemas)
@@ -128,7 +129,7 @@ Token values (full rationale and contrast checks in [design.md](design.md)):
 | Layout | container 1200px · section padding 96px / 64px mobile · Tailwind default spacing |
 | Shape | radius 0 · no shadows · 1px `line` borders · 56×2px `brand` rule |
 
-Light theme only. Until the customer picks a design (step 11), section components accept a `variant: "a" | "b" | "c"` prop; see [design.md](design.md#design-variants-pending-customer-choice).
+Light theme only. Until the customer picks a design (step 11), section components accept a `variant: "a" | "b" | "c"` prop, and variants D and E render their own components; see [design.md](design.md#design-variants-pending-customer-choice).
 
 ## Testing strategy
 

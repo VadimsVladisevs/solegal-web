@@ -15,6 +15,7 @@ import { defaultLocale, localeFromPath, locales } from "~/lib/i18n/config";
 import { themeColor } from "~/lib/seo/meta";
 import type { Route } from "./+types/root";
 
+import "@fontsource-variable/eb-garamond";
 import "@fontsource-variable/montserrat";
 import "./styles/app.css";
 

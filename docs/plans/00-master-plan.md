@@ -30,6 +30,7 @@ Legend: 📝 Draft (needs discussion) · 🔵 Ready · 🟡 In progress · ✅ D
 | 06 | [SEO & metadata](06-seo-metadata.md) | ✅ Done | 05 | M2 |
 | 07 | [CI/CD → GitHub Pages](07-ci-cd-github-pages.md) | 🟡 In progress | 01 (pipeline), 05 (live site) | M2 |
 | 12 | [Services section](12-services-section.md) | ✅ Done | 05 | M2 |
+| 13 | [Modern redesign: variants D and E](13-modern-redesign.md) | ✅ Done | 05 | M2 |
 | 11 | [Final design variant](11-final-design-variant.md) | 📝 Draft · blocked on customer | 05 + customer choice | M2 |
 | 08 | [Partners section](08-partners-section.md) | 📝 Draft · backlog | 05 | M3 |
 | 09 | [Cloudflare Pages](09-cloudflare-pages.md) | 📝 Draft · backlog | 07 | M4 |

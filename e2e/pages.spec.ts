@@ -5,6 +5,8 @@ const variants = [
   { name: "A", path: "" },
   { name: "B", path: "b/" },
   { name: "C", path: "c/" },
+  { name: "D", path: "d/" },
+  { name: "E", path: "e/" },
 ];
 
 for (const locale of locales) {
@@ -25,7 +27,9 @@ for (const locale of locales) {
         "tel:+37120000000",
       );
       await expect(
-        page.locator("nav a[aria-current='page']", { hasText: name }),
+        page.locator("nav a[aria-current='page']", {
+          hasText: new RegExp(`^${name}$`),
+        }),
       ).toBeVisible();
     });
   }

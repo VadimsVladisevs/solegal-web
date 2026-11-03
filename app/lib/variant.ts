@@ -1,7 +1,17 @@
 import { useMatches } from "react-router";
 
-/** Design variants shown to the customer; step 11 removes all but one. */
-export type Variant = "a" | "b" | "c";
+/** Variants A–C share the section components (`variant` prop). */
+export type SharedVariant = "a" | "b" | "c";
+
+/**
+ * Design variants shown to the customer; step 11 removes all but one. D and E
+ * (step 13) render their own header, sections and footer.
+ */
+export type Variant = SharedVariant | "d" | "e";
+
+export function isSharedVariant(variant: Variant): variant is SharedVariant {
+  return variant !== "d" && variant !== "e";
+}
 
 /** Route `handle` shape that declares the design variant of a page. */
 export interface VariantHandle {

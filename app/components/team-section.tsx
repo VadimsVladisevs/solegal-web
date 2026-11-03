@@ -1,20 +1,20 @@
 import type { TeamMember } from "~/content/types";
 import { useT } from "~/lib/i18n/use-t";
-import type { Variant } from "~/lib/variant";
+import type { SharedVariant } from "~/lib/variant";
 import { Heading } from "./heading";
 import { Label } from "./label";
 import { Rule } from "./rule";
 import { Section, type SectionTone } from "./section";
 import { TeamMemberCard } from "./team-member-card";
 
-const tones: Record<Variant, SectionTone> = {
+const tones: Record<SharedVariant, SectionTone> = {
   a: "tint",
   b: "surface-alt",
   c: "surface",
 };
 
 interface TeamSectionProps {
-  variant: Variant;
+  variant: SharedVariant;
   team: TeamMember[];
 }
 

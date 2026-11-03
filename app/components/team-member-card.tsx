@@ -1,10 +1,10 @@
 import type { TeamMember } from "~/content/types";
-import type { Variant } from "~/lib/variant";
+import type { SharedVariant } from "~/lib/variant";
 import { Heading } from "./heading";
 
 interface TeamMemberCardProps {
   member: TeamMember;
-  variant: Variant;
+  variant: SharedVariant;
 }
 
 /** Photo (4:5), role, name and a short bio. */
@@ -34,7 +34,7 @@ export function TeamMemberCard({ member, variant }: TeamMemberCardProps) {
 }
 
 /** A decorative head-and-shoulders silhouette for members without a photo. */
-function PlaceholderPhoto() {
+export function PlaceholderPhoto() {
   return (
     <svg
       viewBox="0 0 100 100"

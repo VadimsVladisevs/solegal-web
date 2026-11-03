@@ -1,5 +1,5 @@
 import type { SiteSettings } from "~/content/types";
-import type { Variant } from "~/lib/variant";
+import type { SharedVariant } from "~/lib/variant";
 import { ButtonLink } from "./button";
 import { Heading } from "./heading";
 import { Label } from "./label";
@@ -8,7 +8,7 @@ import { Rule } from "./rule";
 import { Section } from "./section";
 
 interface HeroSectionProps {
-  variant: Variant;
+  variant: SharedVariant;
   siteSettings: SiteSettings;
 }
 

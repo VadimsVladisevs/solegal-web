@@ -51,7 +51,7 @@ export default function LangLayout({ loaderData }: Route.ComponentProps) {
       <main id="main" tabIndex={-1} className="focus:outline-none">
         <Outlet />
       </main>
-      <Footer firmName={loaderData.firmName} />
+      <Footer variant={variant} firmName={loaderData.firmName} />
       <DesignSwitcher />
     </I18nContext>
   );

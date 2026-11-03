@@ -6,7 +6,7 @@ import { ServicesSection } from "~/components/services-section";
 import { TeamSection } from "~/components/team-section";
 import { content } from "~/lib/content";
 import { isLocale } from "~/lib/i18n/config";
-import { type VariantHandle, useVariant } from "~/lib/variant";
+import { type VariantHandle, isSharedVariant, useVariant } from "~/lib/variant";
 import type { Route } from "./+types/home";
 
 export async function loader({ params }: Route.LoaderArgs) {
@@ -37,7 +37,9 @@ export const handle: VariantHandle = { variant: "a" };
 /** The one-page site: Hero → About → Services → Team → Contact. */
 export default function Home({ loaderData }: Route.ComponentProps) {
   const { siteSettings, services, team, contactInfo } = loaderData;
-  const variant = useVariant();
+  const current = useVariant();
+  // D and E have their own page components (home-d, home-e).
+  const variant = isSharedVariant(current) ? current : "a";
 
   return (
     <>

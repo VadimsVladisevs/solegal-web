@@ -152,7 +152,7 @@ Source: `docs/images/logo.jpg`. Vector versions, rebuilt from Montserrat glyph o
 
 ## Design variants (pending customer choice)
 
-Three variants are built so the customer can choose. They share **all tokens, typography, content and section order**; only the treatment differs.
+Five variants are built so the customer can choose. A–C share **all tokens, typography, content and section order**; only the treatment differs. D and E are described below the table.
 
 | | A · Quiet white (default) | B · Green hero | C · Split |
 |---|---|---|---|
@@ -164,9 +164,30 @@ Three variants are built so the customer can choose. They share **all tokens, ty
 | Contact | white, `line` rules between items | `brand-strong` band; white values, `on-brand-muted` labels | `tint` background |
 | Footer | same for all: white, `line` top border, `muted` text | | |
 
+### D · Classic and E · Motion (step 13)
+
+Two more variants follow reference sites the user chose: [rutan.com](https://www.rutan.com/) for D and [nossaman.com](https://www.nossaman.com/) for E. They keep the color tokens and the content, but have their own header, sections and footer. See [13-modern-redesign](plans/13-modern-redesign.md).
+
+| | D · Classic (`/{lang}/d`) | E · Motion (`/{lang}/e`) |
+|---|---|---|
+| Header | over the hero: the logo on a white chevron plate between diagonal `brand` / `brand-strong` bands, a "Menu" button and languages (hidden on phones); white with a `line` border once scrolled. The menu is a full-screen `brand-strong` panel at every width. | over the hero: white logo and nav on a dark top scrim; white with a `line` border once scrolled. Mobile uses the shared menu. |
+| Hero | full-height Riga photo with a slow zoom and a dark green overlay; a centered serif tagline (`font-serif`, `text-display`), a cities/languages line, three buttons (`on-brand-muted`, `brand`, outline) and a scroll cue | a full-screen slideshow of 4 photos with a Ken Burns zoom and crossfade. A large translucent disc (`.hero-disc`) changes color with each slide; on phones it is a wide arch. Dots with a 7s progress ring, plus pause/play. The H1 is the hero title (visually hidden); slide titles are visual. |
+| About | centered label, serif H2, short vertical rule, centered paragraphs | a round photo with a parallax zoom and a `brand` circle, text, and 3 count-up numbers |
+| Services | cards with a `brand` border and a line icon, which turn `brand-strong` on hover | rows on `ink` that fill `brand-strong` from below on hover, with an arrow button |
+| Extra | a "Why clients choose us" band on `brand-strong` (4 icon columns, rotated squares), then a full-width photo band | sections fade in on scroll (only below the fold, never with reduced motion) |
+| Team | centered cards, serif names, 3px `brand` photo border | cards that lift on hover, with a `brand` bar |
+| Contact | `tint`; three cards (email, phone, office) | `brand-strong` with a faint photo and a large `brand` circle; links underline on hover |
+| Footer | `ink`, white logo | `ink`, logo, section links, languages |
+
+- **Fonts:** D adds EB Garamond (OFL), self-hosted via `@fontsource-variable/eb-garamond`, as `font-serif` (Latin, Latin Extended, Cyrillic).
+- **Size tokens:** `text-display`, `text-serif-h2`, `text-slide`, `text-row`, `text-stat`. **Animations:** `animate-slow-zoom`, `animate-ken-burns(-alt)`, `animate-ring`, `animate-wheel`, all `motion-safe:` only. With reduced motion, E's slideshow starts paused.
+- **Photos:** five neutral public-domain / CC0 photos from Wikimedia Commons in `public/images/` (`demoImageUrl()` in `app/lib/demo-images.ts`). Alt texts are in the dictionaries. Sources are in [13-modern-redesign](plans/13-modern-redesign.md#photos-demo).
+- **Text:** the variant-only text (tagline, "why us", slides, numbers) lives in the dictionaries (`variantD`, `variantE`, `variants`) as demo copy. If D or E is chosen, the marketing text moves into the content layer.
+
 ### Variant mechanism
 
-- Section components take one prop, `variant: "a" | "b" | "c"`. It only switches styling and the variant-only pieces (B's watermark, C's logo panel). Content and data are identical.
-- Routes: the home route renders variant A; thin routes `/{lang}/b` and `/{lang}/c` render the same page with B / C. That makes 9 prerendered pages.
-- A small floating **design switcher** ("Design A · B · C") links between the variant URLs in the same locale. It is a "light pill" fixed bottom-right (with safe-area insets): white, `line` border, `muted` label, and three 44 × 44px links; the current one is filled `brand` with `on-brand` text and has `aria-current="page"`. The language switcher keeps the current variant.
-- **Removal:** once the customer picks one, step [11](plans/11-final-design-variant.md) makes the chosen treatment the only one at `/{lang}/`. It deletes the `b`/`c` routes, the `variant` prop and its branches, the switcher, and this section.
+- Section components take one prop, `variant: SharedVariant` (`"a" | "b" | "c"`). It only switches styling and the variant-only pieces (B's watermark, C's logo panel). Content and data are identical.
+- D and E have their own components in `app/components/variant-d/` and `variant-e/`. `Header` and `Footer` dispatch to them, and their routes (`home-d.tsx`, `home-e.tsx`) reuse the home loader.
+- Routes: the home route renders variant A; thin routes `/{lang}/b` … `/{lang}/e` render B–E. That makes 15 prerendered pages.
+- A small floating **design switcher** ("Design A · B · C · D · E") links between the variant URLs in the same locale. It is a "light pill" fixed bottom-right (with safe-area insets): white, `line` border, `muted` label, and five 44 × 44px links; the current one is filled `brand` with `on-brand` text and has `aria-current="page"`. The language switcher keeps the current variant.
+- **Removal:** once the customer picks one, step [11](plans/11-final-design-variant.md) makes the chosen treatment the only one at `/{lang}/`. It deletes the other routes (`b`–`e`), the `variant` prop and its branches, the unused `variant-d` / `variant-e` components (and their fonts, tokens and photos if unused), the switcher, and this section.

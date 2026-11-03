@@ -7,8 +7,10 @@ export default [
   route("manifest.webmanifest", "routes/manifest.ts"),
   route(":lang", "routes/lang.tsx", [
     index("routes/home.tsx"),
-    // Design variants B and C (removed in step 11).
+    // Design variants B–E (removed in step 11).
     route("b", "routes/home-b.tsx"),
     route("c", "routes/home-c.tsx"),
+    route("d", "routes/home-d.tsx"),
+    route("e", "routes/home-e.tsx"),
   ]),
 ] satisfies RouteConfig;
